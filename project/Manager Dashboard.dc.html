@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Inter',system-ui,sans-serif;}
+  ::-webkit-scrollbar{width:8px;height:8px;}
+  ::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:8px;}
+</style>
+</helmet>
+
+<div style="min-height:100vh;width:100%;display:flex;align-items:center;justify-content:center;background:#E7EAF0;padding:28px;font-family:'Inter',sans-serif;">
+  <div style="width:1280px;height:864px;border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(15,23,42,.22);background:#fff;display:flex;flex-direction:column;position:relative;">
+    <sc-if value="{{ toastShown }}">
+      <div style="position:absolute;bottom:22px;right:24px;z-index:99;background:#0F1B2D;color:#fff;font-size:12.5px;font-weight:600;padding:11px 16px;border-radius:10px;box-shadow:0 10px 30px rgba(15,23,42,.35);display:flex;align-items:center;gap:8px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        {{ toast }}
+      </div>
+    </sc-if>
+
+    <!-- browser chrome -->
+    <div style="height:44px;flex:none;background:#EDEFF3;border-bottom:1px solid #DCE0E8;display:flex;align-items:center;gap:14px;padding:0 16px;">
+      <div style="display:flex;gap:7px;"><span style="width:12px;height:12px;border-radius:50%;background:#F1605C;"></span><span style="width:12px;height:12px;border-radius:50%;background:#F6BE4F;"></span><span style="width:12px;height:12px;border-radius:50%;background:#3EC353;"></span></div>
+      <div style="flex:1;max-width:420px;background:#fff;border:1px solid #DCE0E8;border-radius:8px;height:26px;display:flex;align-items:center;gap:7px;padding:0 12px;font-size:12px;color:#64748B;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        salesmaxpro.in/admin
+      </div>
+    </div>
+
+    <div style="flex:1;display:flex;min-height:0;">
+
+      <!-- sidebar -->
+      <div style="width:236px;flex:none;background:#0F1B2D;display:flex;flex-direction:column;padding:20px 14px;">
+        <div style="display:flex;align-items:center;gap:9px;padding:0 6px 18px;">
+          <div style="width:30px;height:30px;border-radius:8px;background:#2563EB;display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 5-5 4 4 8-8"/><path d="M17 7h4v4"/></svg></div>
+          <div style="display:flex;align-items:center;gap:5px;"><span style="font-size:15px;font-weight:800;color:#fff;letter-spacing:-.02em;">SalesMax</span><span style="font-size:9px;font-weight:800;color:#fff;background:#2563EB;padding:2px 5px;border-radius:4px;">PRO</span></div>
+        </div>
+        <div style="font-size:10px;font-weight:700;color:#5B6B82;text-transform:uppercase;letter-spacing:.08em;padding:8px 8px 6px;">L&D Console</div>
+        <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="6">
+          <div onClick="{{ n.onClick }}" style="display:flex;align-items:center;gap:11px;padding:10px 11px;border-radius:9px;cursor:pointer;margin-bottom:2px;{{ n.style }}">
+            <span style="display:flex;">{{ n.icon }}</span>
+            <span style="font-size:13.5px;font-weight:600;">{{ n.label }}</span>
+            <sc-if value="{{ n.lock }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:auto;opacity:.6;"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></sc-if>
+          </div>
+        </sc-for>
+        <div style="margin-top:auto;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px;">
+          <div style="font-size:11px;color:#94A3B8;line-height:1.45;"><b style="color:#CBD5E1;">Performance &amp; training</b> metrics are visible per consultant. <b style="color:#CBD5E1;">Workplace role-plays &amp; well-being practice</b> stay private to each person — only aggregated, de-identified signals surface here.</div>
+        </div>
+      </div>
+
+      <!-- main -->
+      <div style="flex:1;min-width:0;background:#F5F7FA;display:flex;flex-direction:column;overflow:hidden;">
+        <!-- top bar -->
+        <div style="height:62px;flex:none;background:#fff;border-bottom:1px solid #E6EAF0;display:flex;align-items:center;justify-content:space-between;padding:0 26px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="position:relative;">
+              <div onClick="{{ toggleZone }}" style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:6px 8px;margin:-6px -8px;border-radius:8px;">
+                <span style="font-size:13.5px;font-weight:700;color:#0F172A;">Hyundai — {{ zoneLabel }}</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+              </div>
+              <sc-if value="{{ zoneOpen }}">
+                <div style="position:absolute;top:36px;left:0;z-index:70;background:#fff;border:1px solid #E2E8F0;border-radius:10px;box-shadow:0 14px 38px rgba(15,23,42,.16);min-width:240px;padding:6px;">
+                  <sc-for list="{{ zoneOptions }}" as="z" hint-placeholder-count="4">
+                    <div onClick="{{ z.onClick }}" style="padding:9px 12px;border-radius:7px;font-size:12.5px;font-weight:600;color:#0F172A;cursor:pointer;display:flex;justify-content:space-between;align-items:center;{{ z.style }}">
+                      {{ z.label }}
+                      <sc-if value="{{ z.sel }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></sc-if>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+            <span style="font-size:10px;font-weight:700;color:#64748B;background:#F1F5F9;border:1px solid #E2E8F0;padding:3px 8px;border-radius:6px;">sample data</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="position:relative;">
+              <div onClick="{{ togglePeriod }}" style="display:flex;align-items:center;gap:7px;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;font-size:12.5px;color:#475569;font-weight:600;cursor:pointer;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>{{ periodLabel }}
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+              </div>
+              <sc-if value="{{ periodOpen }}">
+                <div style="position:absolute;top:40px;right:0;z-index:70;background:#fff;border:1px solid #E2E8F0;border-radius:10px;box-shadow:0 14px 38px rgba(15,23,42,.16);min-width:180px;padding:6px;">
+                  <sc-for list="{{ periodOptions }}" as="p" hint-placeholder-count="4">
+                    <div onClick="{{ p.onClick }}" style="padding:9px 12px;border-radius:7px;font-size:12.5px;font-weight:600;color:#0F172A;cursor:pointer;display:flex;justify-content:space-between;align-items:center;{{ p.style }}">
+                      {{ p.label }}
+                      <sc-if value="{{ p.sel }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></sc-if>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+            <div onClick="{{ doExport }}" style="display:flex;align-items:center;gap:7px;background:#2563EB;border-radius:8px;padding:8px 13px;font-size:12.5px;color:#fff;font-weight:600;cursor:pointer;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Export</div>
+            <div style="width:34px;height:34px;border-radius:50%;background:#0F1B2D;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;">RM</div>
+          </div>
+        </div>
+
+        <div style="flex:1;overflow-y:auto;padding:24px 26px 32px;">
+
+          <!-- OVERVIEW -->
+          <sc-if value="{{ isOverview }}" hint-placeholder-val="{{ true }}">
+            <div>
+              <div style="font-size:20px;font-weight:800;color:#0F172A;letter-spacing:-.02em;">L&D overview</div>
+              <div style="font-size:13px;color:#64748B;margin-top:3px;">How training is translating into floor performance across the zone.</div>
+
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;">
+                <sc-for list="{{ attention }}" as="a" hint-placeholder-count="3">
+                  <div onClick="{{ a.onClick }}" style="background:#fff;border:1px solid #E6EAF0;border-radius:11px;padding:13px 15px;cursor:pointer;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;">
+                      <span style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:{{ a.color }};">● {{ a.tag }}</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+                    </div>
+                    <div style="font-size:12.5px;color:#0F172A;font-weight:600;line-height:1.4;margin-top:7px;">{{ a.text }}</div>
+                    <div style="font-size:11px;color:#2563EB;font-weight:600;margin-top:7px;">{{ a.link }} →</div>
+                  </div>
+                </sc-for>
+              </div>
+
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px;">
+                <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+                  <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:16px;">
+                    <div style="font-size:11.5px;color:#64748B;font-weight:600;">{{ k.label }}</div>
+                    <div style="display:flex;align-items:flex-end;gap:8px;margin-top:9px;">
+                      <span style="font-size:27px;font-weight:800;color:#0F172A;letter-spacing:-.02em;line-height:1;">{{ k.value }}</span>
+                      <span style="font-size:12px;font-weight:700;color:{{ k.deltaColor }};padding-bottom:2px;">{{ k.delta }}</span>
+                    </div>
+                    <div style="font-size:11px;color:#94A3B8;margin-top:7px;">{{ k.sub }}</div>
+                  </div>
+                </sc-for>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:14px;margin-top:14px;">
+                <!-- skill index trend -->
+                <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:18px;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;">
+                    <div style="font-size:14px;font-weight:700;color:#0F172A;">Zone skill index</div>
+                    <div style="display:flex;align-items:center;gap:14px;">
+                      <span style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#64748B;font-weight:600;"><span style="width:9px;height:9px;border-radius:2px;background:#2563EB;"></span>This zone</span>
+                      <span style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#64748B;font-weight:600;"><span style="width:9px;height:9px;border-radius:2px;background:#CBD5E1;"></span>National avg</span>
+                    </div>
+                  </div>
+                  <div style="margin-top:16px;">
+                    <svg width="100%" height="180" viewBox="0 0 560 180" preserveAspectRatio="none">
+                      <line x1="0" y1="40" x2="560" y2="40" stroke="#EEF2F7"/><line x1="0" y1="80" x2="560" y2="80" stroke="#EEF2F7"/><line x1="0" y1="120" x2="560" y2="120" stroke="#EEF2F7"/><line x1="0" y1="160" x2="560" y2="160" stroke="#EEF2F7"/>
+                      <path d="M0 132 L93 126 L186 120 L279 104 L372 92 L465 74 L560 58" fill="none" stroke="#CBD5E1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M0 140 L93 128 L186 110 L279 96 L372 70 L465 52 L560 34" fill="none" stroke="#2563EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                      <circle cx="560" cy="34" r="4.5" fill="#2563EB"/>
+                    </svg>
+                    <div style="display:flex;justify-content:space-between;font-size:10.5px;color:#94A3B8;font-weight:600;margin-top:6px;"><span>Wk 1</span><span>Wk 4</span><span>Wk 7</span><span>Wk 10</span><span>Wk 13</span></div>
+                  </div>
+                </div>
+                <!-- module completion -->
+                <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:18px;">
+                  <div style="font-size:14px;font-weight:700;color:#0F172A;">Skill gains by module</div>
+                  <div style="margin-top:16px;display:flex;flex-direction:column;gap:13px;">
+                    <sc-for list="{{ skillBars }}" as="s" hint-placeholder-count="5">
+                      <div>
+                        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;"><span style="color:#334155;font-weight:600;">{{ s.name }}</span><span style="color:#16A34A;font-weight:700;">{{ s.delta }}</span></div>
+                        <div style="height:7px;border-radius:999px;background:#EEF2F7;overflow:hidden;"><div style="height:100%;width:{{ s.w }};background:#2563EB;border-radius:999px;"></div></div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+
+              <!-- dealership rollup -->
+              <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;margin-top:14px;overflow:hidden;">
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid #EEF2F7;">
+                  <div style="font-size:14px;font-weight:700;color:#0F172A;">Dealership rollup</div>
+                  <span onClick="{{ toggleDealers }}" style="font-size:11.5px;color:#2563EB;font-weight:600;cursor:pointer;">{{ dealerToggle }}</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 0.8fr;padding:10px 18px;font-size:10.5px;color:#94A3B8;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid #EEF2F7;">
+                  <span>Dealership</span><span>Adoption</span><span>Avg skill</span><span>Walk-in → booking</span><span>Trend</span>
+                </div>
+                <sc-for list="{{ dealerships }}" as="d" hint-placeholder-count="4">
+                  <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 0.8fr;align-items:center;padding:13px 18px;border-bottom:1px solid #F1F5F9;">
+                    <span style="font-size:13px;font-weight:600;color:#0F172A;">{{ d.name }}</span>
+                    <span style="font-size:13px;color:#334155;font-weight:600;">{{ d.adoption }}</span>
+                    <span style="font-size:13px;color:#334155;font-weight:600;">{{ d.skill }}</span>
+                    <span style="font-size:13px;color:#334155;font-weight:600;">{{ d.conv }}</span>
+                    <span style="font-size:12px;font-weight:700;color:{{ d.trendColor }};">{{ d.trend }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- DEALERSHIP HEALTH -->
+          <sc-if value="{{ isHealth }}">
+            <div>
+              <div style="font-size:20px;font-weight:800;color:#0F172A;letter-spacing:-.02em;">Dealership health</div>
+              <div style="font-size:13px;color:#64748B;margin-top:3px;">Early signals on working conditions, derived from anonymized, aggregated usage.</div>
+
+              <div style="margin-top:16px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:12px;padding:15px 17px;display:flex;gap:12px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" style="flex:none;margin-top:1px;"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                <div style="font-size:12.5px;color:#1E3A8A;line-height:1.5;"><b>Privacy by design.</b> No individual's practice sessions, chats, or workplace role-plays are ever visible here. Signals below are de-identified and only shown once a dealership clears a minimum sample size (k ≥ 8). DPDP-aware.</div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px;">
+                <sc-for list="{{ healthKpis }}" as="h" hint-placeholder-count="3">
+                  <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:16px;">
+                    <div style="font-size:11.5px;color:#64748B;font-weight:600;">{{ h.label }}</div>
+                    <div style="font-size:25px;font-weight:800;color:{{ h.color }};margin-top:8px;line-height:1;">{{ h.value }}</div>
+                    <div style="font-size:11px;color:#94A3B8;margin-top:7px;">{{ h.sub }}</div>
+                  </div>
+                </sc-for>
+              </div>
+
+              <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;margin-top:14px;overflow:hidden;">
+                <div style="padding:16px 18px;border-bottom:1px solid #EEF2F7;font-size:14px;font-weight:700;color:#0F172A;">Condition signals by dealership <span style="font-size:11px;font-weight:600;color:#94A3B8;">· anonymized</span></div>
+                <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1.1fr;padding:10px 18px;font-size:10.5px;color:#94A3B8;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid #EEF2F7;">
+                  <span>Dealership</span><span>Workload pressure</span><span>Morale signal</span><span>Recommended action</span>
+                </div>
+                <sc-for list="{{ healthRows }}" as="r" hint-placeholder-count="4">
+                  <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1.1fr;align-items:center;padding:14px 18px;border-bottom:1px solid #F1F5F9;">
+                    <span style="font-size:13px;font-weight:600;color:#0F172A;">{{ r.name }}</span>
+                    <span><span style="font-size:11.5px;font-weight:700;color:{{ r.presColor }};background:{{ r.presBg }};padding:4px 10px;border-radius:999px;">{{ r.pressure }}</span></span>
+                    <span><span style="font-size:11.5px;font-weight:700;color:{{ r.morColor }};background:{{ r.morBg }};padding:4px 10px;border-radius:999px;">{{ r.morale }}</span></span>
+                    <span style="font-size:12px;color:#475569;line-height:1.35;">{{ r.action }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="font-size:11px;color:#94A3B8;margin-top:12px;line-height:1.5;">Signals are illustrative and directional — they flag where to <b>ask</b>, not conclusions about individuals. Sample data.</div>
+            </div>
+          </sc-if>
+
+          <!-- CONSULTANTS (roster) -->
+          <sc-if value="{{ showRoster }}">
+            <div>
+              <div style="font-size:20px;font-weight:800;color:#0F172A;letter-spacing:-.02em;">Consultants</div>
+              <div style="font-size:13px;color:#64748B;margin-top:3px;">Every individual's score, activity and where they're working — or not.</div>
+              <div style="margin-top:14px;background:#F8FAFC;border:1px solid #E6EAF0;border-radius:10px;padding:11px 14px;display:flex;gap:10px;align-items:center;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="1.8" style="flex:none;"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+                <div style="font-size:11.5px;color:#475569;line-height:1.45;">Performance &amp; training data is shown per person. A consultant's private practice — including <b>Tough Situations</b> role-plays — is never visible here.</div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px;">
+                <div style="display:flex;gap:8px;">
+                  <sc-for list="{{ filterChips }}" as="c" hint-placeholder-count="4">
+                    <div onClick="{{ c.onClick }}" style="font-size:12px;font-weight:600;padding:7px 13px;border-radius:999px;border:1px solid #E2E8F0;cursor:pointer;{{ c.style }}">{{ c.label }}</div>
+                  </sc-for>
+                </div>
+                <span style="font-size:12px;color:#94A3B8;font-weight:600;">{{ rosterCount }} consultants</span>
+              </div>
+              <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;margin-top:14px;overflow:hidden;">
+                <div style="display:grid;grid-template-columns:2fr 1fr 0.7fr 0.9fr 0.9fr 1fr 0.9fr;padding:11px 18px;font-size:10px;color:#94A3B8;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid #EEF2F7;">
+                  <span>Consultant</span><span>Dealership</span><span>Level</span><span>Skill idx</span><span>Sales MTD</span><span>Last training</span><span>Status</span>
+                </div>
+                <sc-for list="{{ rosterView }}" as="p" hint-placeholder-count="8">
+                  <div onClick="{{ p.onClick }}" style="display:grid;grid-template-columns:2fr 1fr 0.7fr 0.9fr 0.9fr 1fr 0.9fr;align-items:center;padding:12px 18px;border-bottom:1px solid #F1F5F9;cursor:pointer;">
+                    <div style="display:flex;align-items:center;gap:11px;">
+                      <div style="width:32px;height:32px;border-radius:50%;background:{{ p.avBg }};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:{{ p.avC }};">{{ p.ini }}</div>
+                      <div><div style="font-size:13px;font-weight:600;color:#0F172A;white-space:nowrap;">{{ p.name }}</div><div style="font-size:10.5px;color:#94A3B8;">Active {{ p.last }}</div></div>
+                    </div>
+                    <span style="font-size:12.5px;color:#475569;">{{ p.dealer }}</span>
+                    <span style="font-size:12.5px;color:#475569;font-weight:600;">{{ p.level }}</span>
+                    <span style="font-size:13px;color:#0F172A;font-weight:700;">{{ p.idx }}</span>
+                    <span style="font-size:12.5px;color:#475569;font-weight:600;">{{ p.sales }}</span>
+                    <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:#475569;font-weight:600;"><span style="width:7px;height:7px;border-radius:50%;background:{{ p.trainDot }};"></span>{{ p.lastTrain }}</span>
+                    <span><span style="font-size:11px;font-weight:700;color:{{ p.statusC }};background:{{ p.statusBg }};padding:4px 9px;border-radius:999px;">{{ p.status }}</span></span>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="font-size:11px;color:#94A3B8;margin-top:12px;">Green dot = daily drills are holding the post-training lift · amber = skill is fading without reinforcement. Sample data.</div>
+            </div>
+          </sc-if>
+
+          <!-- CONSULTANT PROFILE -->
+          <sc-if value="{{ showProfile }}">
+            <div>
+              <div onClick="{{ backRoster }}" style="display:flex;align-items:center;gap:6px;color:#64748B;font-size:12.5px;font-weight:600;cursor:pointer;margin-bottom:14px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> All consultants
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <div style="display:flex;align-items:center;gap:14px;">
+                  <div style="width:54px;height:54px;border-radius:50%;background:#0F1B2D;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;">{{ person.ini }}</div>
+                  <div>
+                    <div style="font-size:18px;font-weight:800;color:#0F172A;letter-spacing:-.01em;">{{ person.name }}</div>
+                    <div style="font-size:12.5px;color:#64748B;margin-top:2px;">{{ person.dealer }} · {{ person.level }} · {{ person.joined }} tenure</div>
+                  </div>
+                </div>
+                <span style="font-size:12px;font-weight:700;color:{{ person.statusC }};background:{{ person.statusBg }};padding:6px 13px;border-radius:999px;">{{ person.status }}</span>
+              </div>
+
+              <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:18px;">
+                <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:14px;"><div style="font-size:10.5px;color:#64748B;font-weight:600;">Skill index</div><div style="font-size:23px;font-weight:800;color:#0F172A;margin-top:6px;line-height:1;">{{ person.idx }}</div></div>
+                <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:14px;"><div style="font-size:10.5px;color:#64748B;font-weight:600;">Sales MTD</div><div style="font-size:23px;font-weight:800;color:#0F172A;margin-top:6px;line-height:1;">{{ person.sales }}</div></div>
+                <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:14px;"><div style="font-size:10.5px;color:#64748B;font-weight:600;">Incentive</div><div style="font-size:23px;font-weight:800;color:#16A34A;margin-top:6px;line-height:1;">{{ person.incentive }}</div></div>
+                <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:14px;"><div style="font-size:10.5px;color:#64748B;font-weight:600;">Streak</div><div style="font-size:23px;font-weight:800;color:#0F172A;margin-top:6px;line-height:1;">{{ person.streak }}d</div></div>
+                <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:14px;"><div style="font-size:10.5px;color:#64748B;font-weight:600;">Last active</div><div style="font-size:16px;font-weight:800;color:#0F172A;margin-top:9px;line-height:1;">{{ person.last }}</div></div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:14px;margin-top:14px;">
+                <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:18px;">
+                  <div style="font-size:14px;font-weight:700;color:#0F172A;margin-bottom:16px;">Skill profile</div>
+                  <div style="display:flex;flex-direction:column;gap:13px;">
+                    <sc-for list="{{ person.skills }}" as="s" hint-placeholder-count="5">
+                      <div>
+                        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;"><span style="color:#334155;font-weight:600;">{{ s.name }}</span><span style="color:#0F172A;font-weight:700;">{{ s.val }}</span></div>
+                        <div style="height:7px;border-radius:999px;background:#EEF2F7;overflow:hidden;"><div style="height:100%;width:{{ s.w }};background:{{ s.color }};border-radius:999px;"></div></div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:14px;">
+                  <!-- training retention / decay -->
+                  <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:18px;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;">
+                      <div style="font-size:14px;font-weight:700;color:#0F172A;">Post-training retention</div>
+                      <span style="font-size:11px;color:#64748B;font-weight:600;">Last session {{ person.lastTrain }}</span>
+                    </div>
+                    <div style="margin-top:14px;">
+                      <svg width="100%" height="110" viewBox="0 0 360 110" preserveAspectRatio="none">
+                        <line x1="0" y1="28" x2="360" y2="28" stroke="#F1F5F9"/><line x1="0" y1="64" x2="360" y2="64" stroke="#F1F5F9"/>
+                        <path d="M0 86 L60 30" stroke="#94A3B8" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <path d="M60 30 L150 36 L240 40 L360 30" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M60 30 L150 58 L240 80 L360 88" fill="none" stroke="#D97706" stroke-width="2.5" stroke-dasharray="5 4" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="60" cy="30" r="4" fill="#0F172A"/>
+                      </svg>
+                      <div style="display:flex;justify-content:space-between;font-size:10px;color:#94A3B8;font-weight:600;margin-top:4px;"><span>Session</span><span>+2d</span><span>+5d</span><span>Today</span></div>
+                    </div>
+                    <div style="display:flex;gap:14px;margin-top:10px;">
+                      <span style="display:flex;align-items:center;gap:6px;font-size:11px;color:#64748B;font-weight:600;"><span style="width:14px;height:3px;border-radius:2px;background:#16A34A;"></span>With daily drills</span>
+                      <span style="display:flex;align-items:center;gap:6px;font-size:11px;color:#64748B;font-weight:600;"><span style="width:14px;height:3px;border-radius:2px;background:#D97706;"></span>Training only</span>
+                    </div>
+                    <div style="margin-top:12px;background:#F8FAFC;border:1px solid #E6EAF0;border-radius:9px;padding:11px 13px;font-size:12px;color:#334155;line-height:1.45;">{{ person.decayNote }}</div>
+                  </div>
+                  <!-- coaching -->
+                  <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:18px;">
+                    <div style="font-size:14px;font-weight:700;color:#0F172A;">Coaching focus</div>
+                    <div style="display:flex;align-items:center;gap:8px;margin-top:10px;"><span style="font-size:11px;color:#64748B;font-weight:600;">Biggest gap</span><span style="font-size:11.5px;font-weight:700;color:#D97706;background:#FEF3C7;padding:4px 10px;border-radius:999px;">{{ person.gap }}</span></div>
+                    <div style="margin-top:12px;font-size:12.5px;color:#475569;line-height:1.5;">{{ person.note }}</div>
+                  </div>
+                </div>
+              </div>
+              <div style="font-size:11px;color:#94A3B8;margin-top:12px;">Performance &amp; training metrics only · {{ person.modules }} modules completed · private practice content is not shown. Sample data.</div>
+            </div>
+          </sc-if>
+
+          <!-- SKILL DEVELOPMENT -->
+          <sc-if value="{{ isSkill }}">
+            <div>
+              <div style="font-size:20px;font-weight:800;color:#0F172A;letter-spacing:-.02em;">Skill development</div>
+              <div style="font-size:13px;color:#64748B;margin-top:3px;">Where the zone is strong, where to coach next.</div>
+              <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;margin-top:18px;overflow:hidden;">
+                <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;padding:12px 18px;font-size:10.5px;color:#94A3B8;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid #EEF2F7;">
+                  <span>Skill</span><span>Avg score</span><span>% proficient</span><span>MoM</span><span>Practising</span>
+                </div>
+                <sc-for list="{{ skillTable }}" as="s" hint-placeholder-count="5">
+                  <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;align-items:center;padding:13px 18px;border-bottom:1px solid #F1F5F9;">
+                    <span style="font-size:13px;font-weight:600;color:#0F172A;">{{ s.name }}</span>
+                    <span style="font-size:13px;color:#334155;font-weight:600;">{{ s.avg }}</span>
+                    <span style="font-size:13px;color:#334155;font-weight:600;">{{ s.prof }}</span>
+                    <span style="font-size:12.5px;color:#16A34A;font-weight:700;">{{ s.mom }}</span>
+                    <span style="font-size:13px;color:#334155;font-weight:600;">{{ s.practicing }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;">
+                <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:18px;">
+                  <div style="font-size:14px;font-weight:700;color:#0F172A;margin-bottom:12px;">Top movers this month</div>
+                  <sc-for list="{{ topMovers }}" as="m" hint-placeholder-count="3">
+                    <div style="display:flex;align-items:center;gap:11px;padding:9px 0;border-bottom:1px solid #F1F5F9;">
+                      <div style="width:32px;height:32px;border-radius:50%;background:#EFF6FF;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#2563EB;">{{ m.ini }}</div>
+                      <div style="flex:1;"><div style="font-size:13px;font-weight:600;color:#0F172A;">{{ m.name }} <span style="color:#94A3B8;font-weight:500;">· {{ m.dealer }}</span></div><div style="font-size:11px;color:#64748B;">{{ m.skill }}</div></div>
+                      <span style="font-size:13px;font-weight:700;color:#16A34A;">{{ m.gain }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:18px;">
+                  <div style="font-size:14px;font-weight:700;color:#0F172A;margin-bottom:12px;">Needs attention</div>
+                  <sc-for list="{{ needsAttention }}" as="n" hint-placeholder-count="3">
+                    <div style="display:flex;align-items:center;gap:11px;padding:9px 0;border-bottom:1px solid #F1F5F9;">
+                      <div style="width:32px;height:32px;border-radius:50%;background:#FEF3C7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#D97706;">{{ n.ini }}</div>
+                      <div style="flex:1;"><div style="font-size:13px;font-weight:600;color:#0F172A;">{{ n.name }} <span style="color:#94A3B8;font-weight:500;">· {{ n.dealer }}</span></div><div style="font-size:11px;color:#64748B;">{{ n.note }}</div></div>
+                      <span style="font-size:11.5px;font-weight:600;color:#2563EB;cursor:pointer;">Nudge</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              <!-- content effectiveness -->
+              <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;margin-top:14px;overflow:hidden;">
+                <div style="padding:16px 18px;border-bottom:1px solid #EEF2F7;">
+                  <div style="font-size:14px;font-weight:700;color:#0F172A;">Module effectiveness</div>
+                  <div style="font-size:12px;color:#64748B;margin-top:2px;">Which content actually moves conversion — so weak modules get reworked, not repeated.</div>
+                </div>
+                <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 0.9fr;padding:10px 18px;font-size:10.5px;color:#94A3B8;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid #EEF2F7;">
+                  <span>Module</span><span>Completions</span><span>Score lift</span><span>Conv. lift</span><span>Verdict</span>
+                </div>
+                <sc-for list="{{ moduleRows }}" as="m" hint-placeholder-count="5">
+                  <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 0.9fr;align-items:center;padding:13px 18px;border-bottom:1px solid #F1F5F9;">
+                    <span style="font-size:13px;font-weight:600;color:#0F172A;">{{ m.name }}</span>
+                    <span style="font-size:13px;color:#334155;font-weight:600;">{{ m.completions }}</span>
+                    <span style="font-size:13px;color:#16A34A;font-weight:700;">{{ m.lift }}</span>
+                    <span style="font-size:13px;color:#16A34A;font-weight:700;">{{ m.conv }}</span>
+                    <span><span style="font-size:11px;font-weight:700;color:{{ m.vC }};background:{{ m.vBg }};padding:4px 10px;border-radius:999px;">{{ m.verdict }}</span></span>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="font-size:11px;color:#94A3B8;margin-top:12px;">Sample data · scores are human-reviewed model outputs · lifts are directional attribution, not causal claims.</div>
+            </div>
+          </sc-if>
+
+          <!-- INCENTIVES & ROI -->
+          <sc-if value="{{ isRoi }}">
+            <div>
+              <div style="font-size:20px;font-weight:800;color:#0F172A;letter-spacing:-.02em;">Incentives & ROI</div>
+              <div style="font-size:13px;color:#64748B;margin-top:3px;">What the program costs, and what it returns on the floor.</div>
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px;">
+                <sc-for list="{{ roiKpis }}" as="k" hint-placeholder-count="4">
+                  <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:16px;">
+                    <div style="font-size:11.5px;color:#64748B;font-weight:600;">{{ k.label }}</div>
+                    <div style="font-size:26px;font-weight:800;color:#0F172A;letter-spacing:-.02em;margin-top:9px;line-height:1;">{{ k.value }}</div>
+                    <div style="font-size:11px;color:#94A3B8;margin-top:7px;">{{ k.sub }}</div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:14px;margin-top:14px;">
+                <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:18px;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;">
+                    <div style="font-size:14px;font-weight:700;color:#0F172A;">Training investment vs bookings</div>
+                    <div style="display:flex;align-items:center;gap:14px;"><span style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#64748B;font-weight:600;"><span style="width:9px;height:9px;border-radius:2px;background:#CBD5E1;"></span>Training hrs</span><span style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#64748B;font-weight:600;"><span style="width:9px;height:9px;border-radius:2px;background:#16A34A;"></span>Bookings</span></div>
+                  </div>
+                  <div style="margin-top:18px;display:flex;align-items:flex-end;gap:14px;height:170px;">
+                    <div style="flex:1;display:flex;align-items:flex-end;justify-content:space-around;gap:10px;height:100%;border-bottom:1px solid #EEF2F7;">
+                      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;width:48px;"><div style="display:flex;align-items:flex-end;gap:4px;height:140px;"><div style="width:14px;height:62px;background:#CBD5E1;border-radius:3px 3px 0 0;"></div><div style="width:14px;height:50px;background:#16A34A;border-radius:3px 3px 0 0;"></div></div><span style="font-size:10.5px;color:#94A3B8;font-weight:600;">Q1</span></div>
+                      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;width:48px;"><div style="display:flex;align-items:flex-end;gap:4px;height:140px;"><div style="width:14px;height:84px;background:#CBD5E1;border-radius:3px 3px 0 0;"></div><div style="width:14px;height:78px;background:#16A34A;border-radius:3px 3px 0 0;"></div></div><span style="font-size:10.5px;color:#94A3B8;font-weight:600;">Q2</span></div>
+                      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;width:48px;"><div style="display:flex;align-items:flex-end;gap:4px;height:140px;"><div style="width:14px;height:104px;background:#CBD5E1;border-radius:3px 3px 0 0;"></div><div style="width:14px;height:116px;background:#16A34A;border-radius:3px 3px 0 0;"></div></div><span style="font-size:10.5px;color:#94A3B8;font-weight:600;">Q3</span></div>
+                      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;width:48px;"><div style="display:flex;align-items:flex-end;gap:4px;height:140px;"><div style="width:14px;height:120px;background:#CBD5E1;border-radius:3px 3px 0 0;"></div><div style="width:14px;height:138px;background:#16A34A;border-radius:3px 3px 0 0;"></div></div><span style="font-size:10.5px;color:#94A3B8;font-weight:600;">Q4</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:18px;">
+                  <div style="font-size:14px;font-weight:700;color:#0F172A;">Bracket distribution</div>
+                  <div style="margin-top:16px;display:flex;flex-direction:column;gap:15px;">
+                    <sc-for list="{{ brackets }}" as="b" hint-placeholder-count="3">
+                      <div>
+                        <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:6px;"><span style="color:#334155;font-weight:600;">{{ b.name }}</span><span style="color:#0F172A;font-weight:700;">{{ b.count }}</span></div>
+                        <div style="height:8px;border-radius:999px;background:#EEF2F7;overflow:hidden;"><div style="height:100%;width:{{ b.w }};background:{{ b.color }};border-radius:999px;"></div></div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+              <div style="font-size:11px;color:#94A3B8;margin-top:12px;">Attribution is an illustrative directional model, not a guaranteed causal claim. Sample data.</div>
+            </div>
+          </sc-if>
+
+          <!-- ADOPTION -->
+          <sc-if value="{{ isAdoption }}">
+            <div>
+              <div style="font-size:20px;font-weight:800;color:#0F172A;letter-spacing:-.02em;">Adoption</div>
+              <div style="font-size:13px;color:#64748B;margin-top:3px;">Who's actually pulling the app open between walk-ins.</div>
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px;">
+                <sc-for list="{{ adoptKpis }}" as="k" hint-placeholder-count="4">
+                  <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:16px;">
+                    <div style="font-size:11.5px;color:#64748B;font-weight:600;">{{ k.label }}</div>
+                    <div style="font-size:26px;font-weight:800;color:#0F172A;letter-spacing:-.02em;margin-top:9px;line-height:1;">{{ k.value }}</div>
+                    <div style="font-size:11px;color:#94A3B8;margin-top:7px;">{{ k.sub }}</div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:14px;margin-top:14px;">
+                <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:18px;">
+                  <div style="font-size:14px;font-weight:700;color:#0F172A;margin-bottom:16px;">Activation funnel</div>
+                  <div style="display:flex;flex-direction:column;gap:13px;">
+                    <sc-for list="{{ funnel }}" as="f" hint-placeholder-count="4">
+                      <div>
+                        <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:6px;"><span style="color:#334155;font-weight:600;">{{ f.label }}</span><span style="color:#0F172A;font-weight:700;">{{ f.value }}</span></div>
+                        <div style="height:10px;border-radius:6px;background:#EEF2F7;overflow:hidden;"><div style="height:100%;width:{{ f.w }};background:#2563EB;border-radius:6px;"></div></div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+                <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:18px;">
+                  <div style="font-size:14px;font-weight:700;color:#0F172A;margin-bottom:12px;">At risk · re-engage</div>
+                  <sc-for list="{{ atRisk }}" as="a" hint-placeholder-count="3">
+                    <div style="display:flex;align-items:center;gap:11px;padding:9px 0;border-bottom:1px solid #F1F5F9;">
+                      <div style="width:32px;height:32px;border-radius:50%;background:#FEE2E2;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#DC2626;">{{ a.ini }}</div>
+                      <div style="flex:1;"><div style="font-size:13px;font-weight:600;color:#0F172A;">{{ a.name }} <span style="color:#94A3B8;font-weight:500;">· {{ a.dealer }}</span></div><div style="font-size:11px;color:#64748B;">{{ a.note }}</div></div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              <!-- new-joiner ramp -->
+              <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;margin-top:14px;padding:18px;">
+                <div style="font-size:14px;font-weight:700;color:#0F172A;">New-joiner ramp report</div>
+                <div style="font-size:12px;color:#64748B;margin-top:2px;">How fast fresh hires reach their first sale — the metric that decides frontline attrition.</div>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;">
+                  <sc-for list="{{ rampKpis }}" as="r" hint-placeholder-count="3">
+                    <div style="background:#F8FAFC;border:1px solid #EEF2F7;border-radius:10px;padding:14px;">
+                      <div style="font-size:11px;color:#64748B;font-weight:600;">{{ r.label }}</div>
+                      <div style="font-size:23px;font-weight:800;color:#0F172A;margin-top:7px;line-height:1;">{{ r.value }}</div>
+                      <div style="font-size:10.5px;color:#94A3B8;margin-top:6px;">{{ r.sub }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="margin-top:16px;">
+                  <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;"><span style="color:#334155;font-weight:600;">With daily drills + coaching</span><span style="color:#16A34A;font-weight:700;">24 days</span></div>
+                  <div style="height:10px;border-radius:6px;background:#EEF2F7;overflow:hidden;"><div style="height:100%;width:58%;background:#16A34A;border-radius:6px;"></div></div>
+                  <div style="display:flex;justify-content:space-between;font-size:12px;margin:12px 0 5px;"><span style="color:#334155;font-weight:600;">Classroom training only</span><span style="color:#94A3B8;font-weight:700;">41 days</span></div>
+                  <div style="height:10px;border-radius:6px;background:#EEF2F7;overflow:hidden;"><div style="height:100%;width:100%;background:#CBD5E1;border-radius:6px;"></div></div>
+                </div>
+              </div>
+              <div style="font-size:11px;color:#94A3B8;margin-top:12px;">Designed to win the 90-second gap, not maximise screen time — high sessions, short duration is the healthy pattern. Sample data.</div>
+            </div>
+          </sc-if>
+
+          <!-- MARKET SIGNALS -->
+          <sc-if value="{{ isMarket }}">
+            <div>
+              <div style="font-size:20px;font-weight:800;color:#0F172A;letter-spacing:-.02em;">Market signals</div>
+              <div style="font-size:13px;color:#64748B;margin-top:3px;">What the floor is hearing — read from the objections, personas and scenarios consultants practise.</div>
+              <div style="margin-top:16px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:12px;padding:14px 17px;display:flex;gap:12px;">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" style="flex:none;margin-top:1px;"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12V2M12 12l8.7 5"/></svg>
+                <div style="font-size:12.5px;color:#1E3A8A;line-height:1.5;">Derived from <b>anonymized, aggregated</b> practice content — objection drills, role-plays and the customer personas your teams build. Individual sessions are never shown; only themes and counts. A live read on the competitive and supply environment.</div>
+              </div>
+              <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin-top:14px;">
+                <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:18px;">
+                  <div style="font-size:14px;font-weight:700;color:#0F172A;margin-bottom:14px;">Trending objections on the floor</div>
+                  <sc-for list="{{ trendingObjections }}" as="o" hint-placeholder-count="5">
+                    <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #F1F5F9;">
+                      <div style="flex:1;font-size:13px;font-weight:600;color:#0F172A;">{{ o.label }}</div>
+                      <div style="font-size:12.5px;color:#64748B;font-weight:600;width:54px;text-align:right;">{{ o.vol }}</div>
+                      <div style="font-size:12.5px;font-weight:700;color:{{ o.trendColor }};width:48px;text-align:right;">{{ o.trend }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:18px;">
+                  <div style="font-size:14px;font-weight:700;color:#0F172A;margin-bottom:16px;">Competitor share of voice</div>
+                  <div style="display:flex;flex-direction:column;gap:14px;">
+                    <sc-for list="{{ competitorShare }}" as="c" hint-placeholder-count="4">
+                      <div>
+                        <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:6px;"><span style="color:#334155;font-weight:600;">{{ c.name }}</span><span style="color:#0F172A;font-weight:700;">{{ c.pct }}</span></div>
+                        <div style="height:8px;border-radius:999px;background:#EEF2F7;overflow:hidden;"><div style="height:100%;width:{{ c.w }};background:#0F1B2D;border-radius:999px;"></div></div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:14px;margin-top:14px;">
+                <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:18px;">
+                  <div style="font-size:14px;font-weight:700;color:#0F172A;margin-bottom:16px;">Personas being created</div>
+                  <div style="display:flex;flex-direction:column;gap:13px;">
+                    <sc-for list="{{ createdPersonas }}" as="p" hint-placeholder-count="5">
+                      <div>
+                        <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:6px;"><span style="color:#334155;font-weight:600;">{{ p.label }}</span><span style="color:#0F172A;font-weight:700;">{{ p.pct }}</span></div>
+                        <div style="height:8px;border-radius:999px;background:#EEF2F7;overflow:hidden;"><div style="height:100%;width:{{ p.w }};background:#2563EB;border-radius:999px;"></div></div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+                <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:18px;">
+                  <div style="font-size:14px;font-weight:700;color:#0F172A;margin-bottom:14px;">Rising themes worth acting on</div>
+                  <div style="display:flex;flex-direction:column;gap:11px;">
+                    <sc-for list="{{ risingThemes }}" as="t" hint-placeholder-count="3">
+                      <div style="display:flex;gap:11px;align-items:flex-start;padding-bottom:11px;border-bottom:1px solid #F1F5F9;">
+                        <span style="font-size:9.5px;font-weight:700;color:#2563EB;background:#EFF6FF;border:1px solid #BFDBFE;padding:4px 8px;border-radius:6px;white-space:nowrap;margin-top:1px;">{{ t.tag }}</span>
+                        <span style="font-size:12.5px;color:#334155;line-height:1.45;">{{ t.text }}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+              <div style="font-size:11px;color:#94A3B8;margin-top:12px;">Volumes are de-identified counts across the zone. Sample data — directional, for where to look next.</div>
+            </div>
+          </sc-if>
+
+          <!-- ZONE BENCHMARKS -->
+          <sc-if value="{{ isBench }}">
+            <div>
+              <div style="font-size:20px;font-weight:800;color:#0F172A;letter-spacing:-.02em;">Zone benchmarks</div>
+              <div style="font-size:13px;color:#64748B;margin-top:3px;">How your zone stacks up against the rest of the country.</div>
+              <div style="margin-top:16px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:12px;padding:14px 17px;display:flex;align-items:center;gap:12px;">
+                <span style="font-size:22px;">🥈</span>
+                <div style="font-size:13px;color:#1E3A8A;line-height:1.5;"><b>Pune North ranks #2 of 12 zones.</b> Adoption is 1pt behind Mumbai West — closing the Hinjewadi gap would take the top spot.</div>
+              </div>
+              <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;margin-top:14px;overflow:hidden;">
+                <div style="display:grid;grid-template-columns:0.6fr 1.6fr 1fr 1fr 1.2fr 1fr 0.8fr;padding:12px 18px;font-size:10.5px;color:#94A3B8;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid #EEF2F7;">
+                  <span>Rank</span><span>Zone</span><span>Adoption</span><span>Skill idx</span><span>Walk-in → booking</span><span>Modules</span><span>Trend</span>
+                </div>
+                <sc-for list="{{ benchRows }}" as="b" hint-placeholder-count="5">
+                  <div style="display:grid;grid-template-columns:0.6fr 1.6fr 1fr 1fr 1.2fr 1fr 0.8fr;align-items:center;padding:13px 18px;border-bottom:1px solid #F1F5F9;{{ b.rowStyle }}">
+                    <span style="font-size:14px;">{{ b.medal }} <b style="font-size:12.5px;color:#475569;">{{ b.rank }}</b></span>
+                    <span style="font-size:13px;font-weight:600;color:#0F172A;">{{ b.zone }}</span>
+                    <span style="font-size:13px;color:#334155;font-weight:600;">{{ b.adoption }}</span>
+                    <span style="font-size:13px;color:#334155;font-weight:600;">{{ b.idx }}</span>
+                    <span style="font-size:13px;color:#334155;font-weight:600;">{{ b.conv }}</span>
+                    <span style="font-size:13px;color:#334155;font-weight:600;">{{ b.modules }}</span>
+                    <span style="font-size:12px;font-weight:700;color:#16A34A;">{{ b.trend }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="font-size:11px;color:#94A3B8;margin-top:12px;">Top 5 of 12 zones shown · highlighted row is your zone · sample data.</div>
+            </div>
+          </sc-if>
+
+          <!-- SETTINGS / DIGEST -->
+          <sc-if value="{{ isSettings }}">
+            <div>
+              <div style="font-size:20px;font-weight:800;color:#0F172A;letter-spacing:-.02em;">Alerts & digest</div>
+              <div style="font-size:13px;color:#64748B;margin-top:3px;">Get the console's priorities in your inbox — no dashboard hunting.</div>
+              <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin-top:18px;align-items:start;">
+                <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:18px;">
+                  <div style="font-size:14px;font-weight:700;color:#0F172A;margin-bottom:6px;">What to include</div>
+                  <sc-for list="{{ digestItems }}" as="d" hint-placeholder-count="5">
+                    <div style="display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid #F1F5F9;">
+                      <div style="flex:1;"><div style="font-size:13px;font-weight:600;color:#0F172A;">{{ d.label }}</div><div style="font-size:11.5px;color:#94A3B8;margin-top:2px;">{{ d.sub }}</div></div>
+                      <div onClick="{{ d.onClick }}" style="width:40px;height:22px;border-radius:999px;padding:3px;display:flex;align-items:center;cursor:pointer;transition:all .2s;{{ d.trackStyle }}">
+                        <div style="width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(15,23,42,.25);"></div>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:14px;">
+                  <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:18px;">
+                    <div style="font-size:14px;font-weight:700;color:#0F172A;margin-bottom:12px;">Frequency</div>
+                    <div style="display:flex;gap:8px;">
+                      <sc-for list="{{ freqChips }}" as="f" hint-placeholder-count="3">
+                        <div onClick="{{ f.onClick }}" style="flex:1;text-align:center;font-size:12px;font-weight:600;padding:8px 0;border-radius:8px;border:1px solid #E2E8F0;cursor:pointer;{{ f.style }}">{{ f.label }}</div>
+                      </sc-for>
+                    </div>
+                    <div style="font-size:11.5px;color:#94A3B8;margin-top:10px;">{{ digestFreq }} digest · Mondays 8:00 IST</div>
+                  </div>
+                  <div style="background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:18px;">
+                    <div style="font-size:14px;font-weight:700;color:#0F172A;margin-bottom:12px;">Recipients</div>
+                    <div style="display:flex;align-items:center;gap:9px;padding:8px 0;"><div style="width:28px;height:28px;border-radius:50%;background:#0F1B2D;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;">RM</div><div><div style="font-size:12.5px;color:#334155;font-weight:600;">R. Mehta</div><div style="font-size:10.5px;color:#94A3B8;">Regional L&amp;D Head</div></div></div>
+                    <div style="display:flex;align-items:center;gap:9px;padding:8px 0;border-top:1px solid #F1F5F9;"><div style="width:28px;height:28px;border-radius:50%;background:#EFF6FF;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#2563EB;">SK</div><div><div style="font-size:12.5px;color:#334155;font-weight:600;">S. Kulkarni</div><div style="font-size:10.5px;color:#94A3B8;">Zone Trainer</div></div></div>
+                    <div onClick="{{ addRecipient }}" style="font-size:12px;color:#2563EB;font-weight:600;cursor:pointer;margin-top:8px;">+ Add recipient</div>
+                  </div>
+                  <div onClick="{{ saveDigest }}" style="background:#2563EB;color:#fff;text-align:center;padding:12px;border-radius:10px;font-size:13.5px;font-weight:700;cursor:pointer;">Save preferences</div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- STUB for other nav -->
+          <sc-if value="{{ isStub }}">
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:440px;color:#94A3B8;">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#CBD5E1" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+              <div style="font-size:15px;font-weight:700;color:#475569;margin-top:14px;">{{ stubLabel }}</div>
+              <div style="font-size:12.5px;margin-top:4px;">Available in the full build · this is a sample console.</div>
+            </div>
+          </sc-if>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:864}}">
+class Component extends DCLogic {
+  state = { view: 'overview', person: null, peopleFilter: 'all', zone: 'Pune North Zone', period: 'This quarter', zoneOpen: false, periodOpen: false, toast: '', showAllDealers: false, digestFreq: 'Weekly', digest: { attention: true, people: true, market: true, health: false, bench: true } };
+
+  icons = {
+    overview: '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>',
+    skill: '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 5-5 4 4 8-8"/><path d="M17 7h4v4"/></svg>',
+    roi: '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h15a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/><path d="M3 7V6a2 2 0 0 1 2-2h11"/></svg>',
+    adoption: '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/></svg>',
+    health: '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 5 4-12 2 7h6"/></svg>',
+    market: '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 2v10l8.7 5"/><path d="M12 12 4 7"/></svg>',
+    people: '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1A4 4 0 0 1 16 11"/></svg>',
+    bench: '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M6 21v-8M12 21V5M18 21v-11"/></svg>',
+    settings: '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7 19.4l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H3a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.6 7l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1Z"/></svg>',
+  };
+
+  nav = [
+    { id: 'overview', label: 'Overview', icon: 'overview' },
+    { id: 'people', label: 'Consultants', icon: 'people' },
+    { id: 'skill', label: 'Skill development', icon: 'skill' },
+    { id: 'roi', label: 'Incentives & ROI', icon: 'roi' },
+    { id: 'adoption', label: 'Adoption', icon: 'adoption' },
+    { id: 'market', label: 'Market signals', icon: 'market' },
+    { id: 'bench', label: 'Zone benchmarks', icon: 'bench' },
+    { id: 'health', label: 'Dealership health', icon: 'health', lock: true },
+    { id: 'settings', label: 'Settings', icon: 'settings' },
+  ];
+
+  kpis = [
+    { label: 'Active consultants', value: '248', delta: '79%', deltaColor: '#16A34A', sub: 'of 312 onboarded · adoption' },
+    { label: 'Avg skill index', value: '64', delta: '▲ 8', deltaColor: '#16A34A', sub: 'up from 56 last quarter' },
+    { label: 'Modules completed', value: '4,820', delta: '▲ 22%', deltaColor: '#16A34A', sub: 'this month, zone-wide' },
+    { label: 'Walk-in → booking', value: '22.4%', delta: '▲ 1.8pt', deltaColor: '#16A34A', sub: 'illustrative benchmark' },
+  ];
+
+  skillBars = [
+    { name: 'Feature mastery', delta: '▲ 11', w: '82%' },
+    { name: 'Objection handling', delta: '▲ 9', w: '64%' },
+    { name: 'Finance options', delta: '▲ 6', w: '71%' },
+    { name: 'Needs discovery', delta: '▲ 5', w: '60%' },
+    { name: 'Test-drive pitch', delta: '▲ 3', w: '49%' },
+  ];
+
+  dealerships = [
+    { name: 'Kothrud Hyundai', adoption: '88%', skill: '69', conv: '24.1%', trend: '▲ 2.4', trendColor: '#16A34A' },
+    { name: 'Baner Motors', adoption: '81%', skill: '66', conv: '22.8%', trend: '▲ 1.6', trendColor: '#16A34A' },
+    { name: 'Wakad Hyundai', adoption: '74%', skill: '61', conv: '21.0%', trend: '▲ 0.7', trendColor: '#16A34A' },
+    { name: 'Hinjewadi Auto', adoption: '63%', skill: '57', conv: '19.3%', trend: '▼ 0.5', trendColor: '#DC2626' },
+  ];
+
+  healthKpis = [
+    { label: 'Zone morale signal', value: 'Stable', color: '#16A34A', sub: 'aggregate sentiment, 13-wk' },
+    { label: 'Dealerships flagged', value: '2 of 14', color: '#D97706', sub: 'elevated workload pressure' },
+    { label: 'Resilience practice', value: '1,140', color: '#0F172A', sub: 'private sessions, de-identified count' },
+  ];
+
+  healthRows = [
+    { name: 'Dealership A', pressure: 'Low', presColor: '#16A34A', presBg: '#DCFCE7', morale: 'Positive', morColor: '#16A34A', morBg: '#DCFCE7', action: 'No action needed' },
+    { name: 'Dealership B', pressure: 'Elevated', presColor: '#D97706', presBg: '#FEF3C7', morale: 'Stable', morColor: '#16A34A', morBg: '#DCFCE7', action: 'Review target pacing with manager' },
+    { name: 'Dealership C', pressure: 'High', presColor: '#DC2626', presBg: '#FEE2E2', morale: 'Dipping', morColor: '#D97706', morBg: '#FEF3C7', action: 'Schedule a 1:1 well-being check-in' },
+    { name: 'Dealership D', pressure: 'Low', presColor: '#16A34A', presBg: '#DCFCE7', morale: 'Positive', morColor: '#16A34A', morBg: '#DCFCE7', action: 'Share what’s working zone-wide' },
+  ];
+
+  // skill development
+  skillTable = [
+    { name: 'Feature mastery', avg: '72', prof: '68%', mom: '▲ 11', practicing: '231' },
+    { name: 'Finance options', avg: '69', prof: '61%', mom: '▲ 6', practicing: '198' },
+    { name: 'Objection handling', avg: '58', prof: '44%', mom: '▲ 9', practicing: '240' },
+    { name: 'Needs discovery', avg: '62', prof: '52%', mom: '▲ 5', practicing: '176' },
+    { name: 'Test-drive pitch', avg: '49', prof: '33%', mom: '▲ 3', practicing: '142' },
+  ];
+  topMovers = [
+    { ini: 'SN', name: 'Sneha N.', dealer: 'Kothrud', gain: '▲ 18', skill: 'Objection handling' },
+    { ini: 'AP', name: 'Arjun P.', dealer: 'Baner', gain: '▲ 15', skill: 'Finance options' },
+    { ini: 'PV', name: 'Priya V.', dealer: 'Kothrud', gain: '▲ 14', skill: 'Feature mastery' },
+  ];
+  needsAttention = [
+    { ini: 'RK', name: 'Rahul K.', dealer: 'Wakad', note: 'No drills in 9 days' },
+    { ini: 'VS', name: 'Vikas S.', dealer: 'Hinjewadi', note: 'Test-drive score declining' },
+    { ini: 'MD', name: 'Meena D.', dealer: 'Hinjewadi', note: 'Stuck at Level 1 · 3 wks' },
+  ];
+
+  // incentives & roi
+  roiKpis = [
+    { label: 'Training hours logged', value: '3,210', sub: 'this quarter, zone-wide' },
+    { label: 'Incentive paid', value: '₹38.2L', sub: 'across all brackets' },
+    { label: 'Bookings (attributed)', value: '612', sub: 'illustrative attribution model' },
+    { label: 'Training ROI', value: '4.3×', sub: 'incentive lift vs program cost' },
+  ];
+  brackets = [
+    { name: 'Silver', count: '96', w: '38%', color: '#94A3B8' },
+    { name: 'Gold', count: '112', w: '45%', color: '#D97706' },
+    { name: 'Platinum', count: '40', w: '16%', color: '#7C3AED' },
+  ];
+
+  // adoption
+  adoptKpis = [
+    { label: 'Weekly active', value: '71%', sub: '221 of 312 consultants' },
+    { label: 'Avg sessions / week', value: '5.4', sub: 'mostly 60–90s sessions' },
+    { label: 'Streak holders', value: '132', sub: '7-day streak or longer' },
+    { label: '30-day retention', value: '68%', sub: 'up from 54% at launch' },
+  ];
+  funnel = [
+    { label: 'Onboarded', value: '312', w: '100%' },
+    { label: 'Activated (first loop)', value: '286', w: '92%' },
+    { label: 'Weekly active', value: '221', w: '71%' },
+    { label: 'Power users (5+/wk)', value: '88', w: '28%' },
+  ];
+  atRisk = [
+    { ini: 'RK', name: 'Rahul K.', dealer: 'Wakad', note: 'Inactive 9 days' },
+    { ini: 'TS', name: 'Tarun S.', dealer: 'Hinjewadi', note: 'Inactive 12 days' },
+    { ini: 'NG', name: 'Nikhil G.', dealer: 'Wakad', note: 'Never activated' },
+  ];
+
+  // market signals
+  trendingObjections = [
+    { label: 'Competitor price (Nexon / Brezza)', vol: '1,840', trend: '▲ 14%', trendColor: '#DC2626' },
+    { label: 'EMI / interest rates rising', vol: '1,210', trend: '▲ 22%', trendColor: '#DC2626' },
+    { label: 'Waiting period & delivery time', vol: '860', trend: '▲ 31%', trendColor: '#DC2626' },
+    { label: 'EV range & charging anxiety', vol: '540', trend: '▲ 18%', trendColor: '#DC2626' },
+    { label: 'Exchange value too low', vol: '470', trend: '▼ 4%', trendColor: '#16A34A' },
+  ];
+  competitorShare = [
+    { name: 'Maruti Suzuki', pct: '42%', w: '42%' },
+    { name: 'Tata Motors', pct: '28%', w: '28%' },
+    { name: 'Mahindra', pct: '16%', w: '16%' },
+    { name: 'Kia', pct: '14%', w: '14%' },
+  ];
+  createdPersonas = [
+    { label: 'Price haggler', pct: '34%', w: '34%' },
+    { label: 'EV-skeptic', pct: '22%', w: '22%' },
+    { label: 'Spec-sheet engineer', pct: '18%', w: '18%' },
+    { label: 'Exchange hawk', pct: '14%', w: '14%' },
+    { label: 'First-time anxious', pct: '12%', w: '12%' },
+  ];
+  risingThemes = [
+    { tag: 'Supply signal', text: '“Waiting period” objections up 31% this month — worth flagging to the OEM on Creta allocation.' },
+    { tag: 'Localized', text: 'EV range anxiety concentrates in 3 dealerships — targeted EV product training recommended.' },
+    { tag: 'Zone-wide', text: 'Interest-rate pushback rising across the zone — refresh the finance-desk talk track.' },
+  ];
+
+  roster = [
+    { id: 'sneha', ini: 'SN', name: 'Sneha Nair', dealer: 'Kothrud Hyundai', level: 4, joined: '2y 3m', idx: 78, sales: 11, target: 10, conv: '26.0%', incentive: '₹52,400', streak: 14, last: 'Today', modules: 38, status: 'Top', statusC: '#16A34A', statusBg: '#DCFCE7', gap: 'Test-drive pitch', note: 'Consistent closer. Ready for a mentor role with new joiners.', skills: [ { name: 'Feature mastery', val: 88 }, { name: 'Objection handling', val: 82 }, { name: 'Finance options', val: 79 }, { name: 'Needs discovery', val: 74 }, { name: 'Test-drive pitch', val: 66 } ] },
+    { id: 'arjun', ini: 'AP', name: 'Arjun Patil', dealer: 'Baner Motors', level: 3, joined: '1y 6m', idx: 71, sales: 9, target: 10, conv: '23.2%', incentive: '₹41,000', streak: 8, last: 'Today', modules: 31, status: 'On track', statusC: '#2563EB', statusBg: '#DBEAFE', gap: 'Needs discovery', note: 'Strong on finance. Push discovery questions before pitching.', skills: [ { name: 'Feature mastery', val: 76 }, { name: 'Objection handling', val: 70 }, { name: 'Finance options', val: 84 }, { name: 'Needs discovery', val: 58 }, { name: 'Test-drive pitch', val: 64 } ] },
+    { id: 'priya', ini: 'PV', name: 'Priya Verma', dealer: 'Kothrud Hyundai', level: 3, joined: '1y 1m', idx: 69, sales: 8, target: 10, conv: '22.1%', incentive: '₹38,200', streak: 6, last: '2h ago', modules: 29, status: 'On track', statusC: '#2563EB', statusBg: '#DBEAFE', gap: 'Objection handling', note: 'Great rapport. Objection drills will lift conversion.', skills: [ { name: 'Feature mastery', val: 80 }, { name: 'Objection handling', val: 55 }, { name: 'Finance options', val: 71 }, { name: 'Needs discovery', val: 72 }, { name: 'Test-drive pitch', val: 63 } ] },
+    { id: 'rohit', ini: 'RM', name: 'Rohit More', dealer: 'Baner Motors', level: 3, joined: '11m', idx: 64, sales: 8, target: 10, conv: '21.0%', incentive: '₹38,400', streak: 6, last: 'Today', modules: 27, status: 'On track', statusC: '#2563EB', statusBg: '#DBEAFE', gap: 'Test-drive pitch', note: 'Improving fast since fixing greeting. Now targeting objections.', skills: [ { name: 'Feature mastery', val: 81 }, { name: 'Objection handling', val: 58 }, { name: 'Finance options', val: 72 }, { name: 'Needs discovery', val: 64 }, { name: 'Test-drive pitch', val: 49 } ] },
+    { id: 'karan', ini: 'KS', name: 'Karan Shah', dealer: 'Wakad Hyundai', level: 2, joined: '7m', idx: 57, sales: 6, target: 10, conv: '18.9%', incentive: '₹26,100', streak: 3, last: '1d ago', modules: 18, status: 'On track', statusC: '#2563EB', statusBg: '#DBEAFE', gap: 'Finance options', note: 'Solid product knowledge for tenure. Build finance fluency next.', skills: [ { name: 'Feature mastery', val: 68 }, { name: 'Objection handling', val: 54 }, { name: 'Finance options', val: 46 }, { name: 'Needs discovery', val: 60 }, { name: 'Test-drive pitch', val: 52 } ] },
+    { id: 'rahul', ini: 'RK', name: 'Rahul Kale', dealer: 'Wakad Hyundai', level: 2, joined: '9m', idx: 52, sales: 4, target: 10, conv: '16.8%', incentive: '₹18,300', streak: 0, last: '9d ago', modules: 12, status: 'At risk', statusC: '#D97706', statusBg: '#FEF3C7', gap: 'Test-drive pitch', note: 'Engagement dropped this month. Conversion slipping — schedule a check-in.', skills: [ { name: 'Feature mastery', val: 60 }, { name: 'Objection handling', val: 48 }, { name: 'Finance options', val: 55 }, { name: 'Needs discovery', val: 50 }, { name: 'Test-drive pitch', val: 38 } ] },
+    { id: 'vikas', ini: 'VS', name: 'Vikas Surve', dealer: 'Hinjewadi Auto', level: 1, joined: '4m', idx: 48, sales: 3, target: 10, conv: '15.1%', incentive: '₹12,200', streak: 0, last: '4d ago', modules: 9, status: 'At risk', statusC: '#D97706', statusBg: '#FEF3C7', gap: 'Objection handling', note: 'New joiner finding footing. Pair with Sneha for shadowing.', skills: [ { name: 'Feature mastery', val: 58 }, { name: 'Objection handling', val: 40 }, { name: 'Finance options', val: 44 }, { name: 'Needs discovery', val: 49 }, { name: 'Test-drive pitch', val: 45 } ] },
+    { id: 'tarun', ini: 'TS', name: 'Tarun Sawant', dealer: 'Hinjewadi Auto', level: 1, joined: '3m', idx: 41, sales: 2, target: 10, conv: '13.0%', incentive: '₹8,100', streak: 0, last: '12d ago', modules: 4, status: 'Inactive', statusC: '#DC2626', statusBg: '#FEE2E2', gap: 'Activation', note: 'Never activated past onboarding. Re-engage before churn.', skills: [ { name: 'Feature mastery', val: 47 }, { name: 'Objection handling', val: 36 }, { name: 'Finance options', val: 38 }, { name: 'Needs discovery', val: 42 }, { name: 'Test-drive pitch', val: 40 } ] },
+  ];
+
+  peopleFilters = [ { id: 'all', label: 'All' }, { id: 'Top', label: 'Top performers' }, { id: 'At risk', label: 'At risk' }, { id: 'Inactive', label: 'Inactive' } ];
+
+  trainingInfo = {
+    sneha: { last: '5d ago', reinforced: true },
+    arjun: { last: '5d ago', reinforced: true },
+    priya: { last: '12d ago', reinforced: true },
+    rohit: { last: '8d ago', reinforced: true },
+    karan: { last: '3d ago', reinforced: true },
+    rahul: { last: '6d ago', reinforced: false },
+    vikas: { last: '18d ago', reinforced: false },
+    tarun: { last: '21d ago', reinforced: false },
+  };
+
+  openPerson = (id) => this.setState({ person: id });
+  backRoster = () => this.setState({ person: null });
+  setFilter = (f) => this.setState({ peopleFilter: f, person: null });
+
+  zones = ['Pune North Zone', 'Pune South Zone', 'Mumbai West Zone', 'All India (National)'];
+  periods = ['This quarter', 'Last quarter', 'This month', 'Last 12 months'];
+
+  kpisByZone = {
+    'Pune South Zone': [
+      { label: 'Active consultants', value: '196', delta: '75%', deltaColor: '#16A34A', sub: 'of 261 onboarded · adoption' },
+      { label: 'Avg skill index', value: '61', delta: '▲ 6', deltaColor: '#16A34A', sub: 'up from 55 last quarter' },
+      { label: 'Modules completed', value: '3,540', delta: '▲ 17%', deltaColor: '#16A34A', sub: 'this month, zone-wide' },
+      { label: 'Walk-in → booking', value: '21.1%', delta: '▲ 1.2pt', deltaColor: '#16A34A', sub: 'illustrative benchmark' },
+    ],
+    'Mumbai West Zone': [
+      { label: 'Active consultants', value: '312', delta: '80%', deltaColor: '#16A34A', sub: 'of 388 onboarded · adoption' },
+      { label: 'Avg skill index', value: '67', delta: '▲ 9', deltaColor: '#16A34A', sub: 'up from 58 last quarter' },
+      { label: 'Modules completed', value: '6,110', delta: '▲ 25%', deltaColor: '#16A34A', sub: 'this month, zone-wide' },
+      { label: 'Walk-in → booking', value: '23.8%', delta: '▲ 2.1pt', deltaColor: '#16A34A', sub: 'illustrative benchmark' },
+    ],
+    'All India (National)': [
+      { label: 'Active consultants', value: '4,218', delta: '75%', deltaColor: '#16A34A', sub: 'of 5,640 onboarded · adoption' },
+      { label: 'Avg skill index', value: '62', delta: '▲ 7', deltaColor: '#16A34A', sub: 'up from 55 last quarter' },
+      { label: 'Modules completed', value: '81,400', delta: '▲ 21%', deltaColor: '#16A34A', sub: 'this month, nation-wide' },
+      { label: 'Walk-in → booking', value: '21.9%', delta: '▲ 1.6pt', deltaColor: '#16A34A', sub: 'illustrative benchmark' },
+    ],
+  };
+
+  extraDealers = [
+    { name: 'Aundh Hyundai', adoption: '79%', skill: '63', conv: '21.8%', trend: '▲ 1.1', trendColor: '#16A34A' },
+    { name: 'Pimpri Motors', adoption: '71%', skill: '59', conv: '20.2%', trend: '▲ 0.4', trendColor: '#16A34A' },
+    { name: 'Kharadi Hyundai', adoption: '68%', skill: '58', conv: '19.8%', trend: '▲ 0.6', trendColor: '#16A34A' },
+    { name: 'Viman Nagar Auto', adoption: '57%', skill: '53', conv: '17.9%', trend: '▼ 0.9', trendColor: '#DC2626' },
+  ];
+
+  attention = [
+    { tag: 'Supply signal', color: '#2563EB', text: '“Waiting period” objections up 31% — flag Creta allocation to the OEM.', link: 'Market signals', view: 'market' },
+    { tag: 'Well-being', color: '#D97706', text: '2 dealerships showing elevated workload pressure for 3+ weeks.', link: 'Dealership health', view: 'health' },
+    { tag: 'Churn risk', color: '#DC2626', text: '3 consultants inactive 9+ days — re-engage before they drop off.', link: 'Consultants', view: 'people' },
+  ];
+
+  benchZones = [
+    { rank: '1', zone: 'Mumbai West', adoption: '80%', idx: '67', conv: '23.8%', modules: '6,110', trend: '▲ 2.1' },
+    { rank: '2', zone: 'Pune North', adoption: '79%', idx: '64', conv: '22.4%', modules: '4,820', trend: '▲ 1.8', me: true },
+    { rank: '3', zone: 'Delhi NCR', adoption: '76%', idx: '63', conv: '22.0%', modules: '7,950', trend: '▲ 1.4' },
+    { rank: '4', zone: 'Pune South', adoption: '75%', idx: '61', conv: '21.1%', modules: '3,540', trend: '▲ 1.2' },
+    { rank: '5', zone: 'Chennai South', adoption: '69%', idx: '58', conv: '19.6%', modules: '4,080', trend: '▲ 0.6' },
+  ];
+
+  rampKpis = [
+    { label: 'Median time to first sale', value: '24 days', sub: 'new joiners on daily drills' },
+    { label: 'Classroom-only baseline', value: '41 days', sub: 'historical cohort, pre-rollout' },
+    { label: '90-day new-joiner retention', value: '81%', sub: 'vs 64% before rollout' },
+  ];
+
+  moduleEffect = [
+    { name: 'Handling “the EMI is too high”', completions: '1,860', lift: '+9', conv: '+1.4pt', verdict: 'Promote', vC: '#16A34A', vBg: '#DCFCE7' },
+    { name: 'Creta — variants & feature mastery', completions: '1,420', lift: '+11', conv: '+1.1pt', verdict: 'Promote', vC: '#16A34A', vBg: '#DCFCE7' },
+    { name: 'Turn a browser into a test drive', completions: '980', lift: '+6', conv: '+0.8pt', verdict: 'Keep', vC: '#2563EB', vBg: '#DBEAFE' },
+    { name: 'Exchange + EMI, made simple', completions: '1,140', lift: '+5', conv: '+0.6pt', verdict: 'Keep', vC: '#2563EB', vBg: '#DBEAFE' },
+    { name: 'Ask before you pitch', completions: '640', lift: '+2', conv: '+0.1pt', verdict: 'Rework', vC: '#D97706', vBg: '#FEF3C7' },
+  ];
+
+  digestDefs = [
+    { key: 'attention', label: 'Needs-your-attention alerts', sub: 'The three priority actions, ranked' },
+    { key: 'people', label: 'At-risk consultants', sub: 'Inactive or declining — with suggested next step' },
+    { key: 'market', label: 'Market signals summary', sub: 'Trending objections & competitor share of voice' },
+    { key: 'health', label: 'Dealership health changes', sub: 'Only when a flag changes — aggregated, de-identified' },
+    { key: 'bench', label: 'Zone benchmark movement', sub: 'Your rank vs other zones' },
+  ];
+
+  toggleDigestItem = (k) => this.setState(s => ({ digest: { ...s.digest, [k]: !s.digest[k] } }));
+  setDigestFreq = (f) => this.setState({ digestFreq: f });
+  saveDigest = () => this.showToast('Digest preferences saved · next send Monday 8:00');
+  addRecipient = () => this.showToast('Invite sent — sample');
+
+  showToast = (msg) => { this.setState({ toast: msg }); clearTimeout(this._tt); this._tt = setTimeout(() => this.setState({ toast: '' }), 2400); };
+  toggleZone = () => this.setState(s => ({ zoneOpen: !s.zoneOpen, periodOpen: false }));
+  togglePeriod = () => this.setState(s => ({ periodOpen: !s.periodOpen, zoneOpen: false }));
+  pickZone = (z) => { this.setState({ zone: z, zoneOpen: false }); this.showToast('Switched to ' + z + ' · sample data'); };
+  pickPeriod = (p) => { this.setState({ period: p, periodOpen: false }); this.showToast('Period: ' + p + ' · sample data refreshed'); };
+  doExport = () => this.showToast('Zone report exported — sample PDF');
+  toggleDealers = () => this.setState(s => ({ showAllDealers: !s.showAllDealers }));
+
+  go = (id) => this.setState({ view: id, person: null, zoneOpen: false, periodOpen: false });
+
+  renderVals() {
+    const v = this.state.view;
+    const person = this.roster.find(p => p.id === this.state.person);
+    const rosterView = this.state.peopleFilter === 'all' ? this.roster : this.roster.filter(p => p.status === this.state.peopleFilter);
+    const navItems = this.nav.map(n => ({
+      label: n.label, lock: !!n.lock,
+      icon: React.createElement('span', { style: { color: v === n.id ? '#fff' : '#7C8BA1', display: 'flex' }, dangerouslySetInnerHTML: { __html: this.icons[n.icon] } }),
+      style: v === n.id ? 'background:#2563EB;color:#fff;' : 'color:#AEBACB;',
+      onClick: () => this.go(n.id),
+    }));
+    const stubLabels = {};
+    return {
+      navItems,
+      isOverview: v === 'overview', isHealth: v === 'health', isStub: !!stubLabels[v], stubLabel: stubLabels[v] || '',
+      isSkill: v === 'skill', isRoi: v === 'roi', isAdoption: v === 'adoption', isMarket: v === 'market',
+      kpis: this.kpisByZone[this.state.zone] || this.kpis, skillBars: this.skillBars,
+      dealerships: this.state.showAllDealers ? [...this.dealerships, ...this.extraDealers] : this.dealerships,
+      dealerToggle: this.state.showAllDealers ? 'Show less' : 'View all 14 →', toggleDealers: this.toggleDealers,
+      zoneLabel: this.state.zone, periodLabel: this.state.period, zoneOpen: this.state.zoneOpen, periodOpen: this.state.periodOpen,
+      toggleZone: this.toggleZone, togglePeriod: this.togglePeriod, doExport: this.doExport,
+      zoneOptions: this.zones.map(z => ({ label: z, sel: z === this.state.zone, style: z === this.state.zone ? 'background:#EFF6FF;color:#2563EB;' : '', onClick: () => this.pickZone(z) })),
+      periodOptions: this.periods.map(p => ({ label: p, sel: p === this.state.period, style: p === this.state.period ? 'background:#EFF6FF;color:#2563EB;' : '', onClick: () => this.pickPeriod(p) })),
+      toast: this.state.toast, toastShown: !!this.state.toast,
+      attention: this.attention.map(a => ({ ...a, onClick: () => this.go(a.view) })),
+      // benchmarks, ramp, content effectiveness, digest
+      isBench: v === 'bench', isSettings: v === 'settings',
+      benchRows: this.benchZones.map(b => ({ ...b, rowStyle: b.me ? 'background:#EFF6FF;' : '', medal: b.rank === '1' ? '🥇' : b.rank === '2' ? '🥈' : b.rank === '3' ? '🥉' : '' })),
+      rampKpis: this.rampKpis, moduleRows: this.moduleEffect,
+      digestItems: this.digestDefs.map(d => ({ ...d, on: !!this.state.digest[d.key], trackStyle: this.state.digest[d.key] ? 'background:#2563EB;justify-content:flex-end;' : 'background:#CBD5E1;justify-content:flex-start;', onClick: () => this.toggleDigestItem(d.key) })),
+      freqChips: ['Daily', 'Weekly', 'Monthly'].map(f => ({ label: f, style: this.state.digestFreq === f ? 'background:#0F1B2D;color:#fff;border-color:#0F1B2D;' : 'background:#fff;color:#475569;border-color:#E2E8F0;', onClick: () => this.setDigestFreq(f) })),
+      digestFreq: this.state.digestFreq, saveDigest: this.saveDigest, addRecipient: this.addRecipient,
+      healthKpis: this.healthKpis, healthRows: this.healthRows,
+      skillTable: this.skillTable, topMovers: this.topMovers, needsAttention: this.needsAttention,
+      roiKpis: this.roiKpis, brackets: this.brackets,
+      adoptKpis: this.adoptKpis, funnel: this.funnel, atRisk: this.atRisk,
+      trendingObjections: this.trendingObjections, competitorShare: this.competitorShare, createdPersonas: this.createdPersonas, risingThemes: this.risingThemes,
+      // people
+      isPeople: v === 'people', showRoster: v === 'people' && !person, showProfile: v === 'people' && !!person,
+      rosterCount: rosterView.length,
+      filterChips: this.peopleFilters.map(f => ({ label: f.label, style: this.state.peopleFilter === f.id ? 'background:#0F1B2D;color:#fff;border-color:#0F1B2D;' : 'background:#fff;color:#475569;border-color:#E2E8F0;', onClick: () => this.setFilter(f.id) })),
+      rosterView: rosterView.map(p => ({ ini: p.ini, name: p.name, dealer: p.dealer, level: 'L' + p.level, idx: String(p.idx), sales: p.sales + ' / ' + p.target, conv: p.conv, last: p.last, lastTrain: (this.trainingInfo[p.id] || {}).last || '—', trainDot: (this.trainingInfo[p.id] || {}).reinforced ? '#16A34A' : '#D97706', status: p.status, statusC: p.statusC, statusBg: p.statusBg, avBg: p.status === 'Top' ? '#DCFCE7' : p.status === 'Inactive' ? '#FEE2E2' : '#EFF6FF', avC: p.status === 'Top' ? '#16A34A' : p.status === 'Inactive' ? '#DC2626' : '#2563EB', onClick: () => this.openPerson(p.id) })),
+      person: person ? {
+        ini: person.ini, name: person.name, dealer: person.dealer, level: 'Level ' + person.level, joined: person.joined,
+        status: person.status, statusC: person.statusC, statusBg: person.statusBg,
+        idx: String(person.idx), sales: person.sales + ' / ' + person.target, incentive: person.incentive, streak: String(person.streak), last: person.last, modules: String(person.modules),
+        gap: person.gap, note: person.note,
+        lastTrain: (this.trainingInfo[person.id] || {}).last || '—', reinforced: !!(this.trainingInfo[person.id] || {}).reinforced,
+        decayNote: (this.trainingInfo[person.id] || {}).reinforced ? 'Daily drills are holding the lift from their last in-person session — no fade.' : 'Skill faded back toward baseline within ~3 days. Drills stopped after the session — reinforce.',
+        skills: person.skills.map(s => ({ name: s.name, val: String(s.val), w: s.val + '%', color: s.val >= 70 ? '#16A34A' : s.val >= 50 ? '#2563EB' : '#D97706' })),
+      } : null,
+    };
+  }
+}
+</script>
+</body>
+</html>

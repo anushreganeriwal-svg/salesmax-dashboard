@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{margin:0;font-family:'Inter',system-ui,sans-serif;}
+  ::-webkit-scrollbar{width:0;height:0;}
+  @keyframes ccfall{to{transform:translateY(820px) rotate(720deg);opacity:0;}}
+  @keyframes recPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,77,141,.5);}50%{transform:scale(1.06);box-shadow:0 0 0 16px rgba(255,77,141,0);}}
+  @keyframes slideUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes popIn{0%{transform:scale(.6);opacity:0;}60%{transform:scale(1.08);}100%{transform:scale(1);opacity:1;}}
+  @keyframes flame{0%,100%{transform:scale(1) rotate(-3deg);}50%{transform:scale(1.14) rotate(3deg);}}
+  @keyframes dot{0%,80%,100%{opacity:.2;}40%{opacity:1;}}
+  @keyframes glow{0%,100%{box-shadow:0 8px 30px rgba(255,77,141,.4);}50%{box-shadow:0 8px 46px rgba(255,157,66,.6);}}
+  @keyframes eq{0%,100%{transform:scaleY(.4);}50%{transform:scaleY(1);}}
+  @keyframes scnIn{from{transform:translateY(10px);}to{transform:translateY(0);}}
+  .scn{opacity:1;animation:scnIn .26s cubic-bezier(.2,.8,.2,1);}
+</style>
+</helmet>
+
+<div style="min-height:100vh;width:100%;display:flex;align-items:center;justify-content:center;background:radial-gradient(120% 85% at 50% 0%, #2C1A4D 0%, #0C0816 62%);padding:24px 0;font-family:'Inter',sans-serif;">
+  <div style="position:relative;width:392px;height:840px;background:#161028;border-radius:42px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 0 0 11px #07040E,0 40px 90px rgba(0,0,0,.6);overflow:hidden;display:flex;flex-direction:column;">
+
+    <div style="height:42px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 24px 0 28px;color:#F4F1FB;font-size:13px;font-weight:600;">
+      <span>9:41</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <svg width="17" height="12" viewBox="0 0 17 12" fill="#F4F1FB"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="4.5" y="4.5" width="3" height="7.5" rx="1"/><rect x="9" y="2" width="3" height="10" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1" opacity="0.4"/></svg>
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="#F4F1FB"><circle cx="8" cy="9.6" r="1.6"/><path d="M8 6c1.2 0 2.3.4 3.1 1.2l1.1-1.2A6.2 6.2 0 0 0 8 4.2 6.2 6.2 0 0 0 3.8 6l1.1 1.2A4.4 4.4 0 0 1 8 6Z"/><path d="M8 2.5c2.2 0 4.2.8 5.7 2.2l1.1-1.2A10 10 0 0 0 8 .8 10 10 0 0 0 1.2 3.5l1.1 1.2A8.3 8.3 0 0 1 8 2.5Z"/></svg>
+        <svg width="26" height="12" viewBox="0 0 26 12" fill="none"><rect x="1" y="1" width="21" height="10" rx="3" stroke="#F4F1FB" stroke-opacity="0.5"/><rect x="3" y="3" width="15" height="6" rx="1.5" fill="#34D399"/><rect x="23" y="4" width="2" height="4" rx="1" fill="#F4F1FB" fill-opacity="0.5"/></svg>
+      </div>
+    </div>
+
+    <div style="height:58px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid rgba(255,255,255,0.06);">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#8B5CF6,#A78BFA);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(139,92,246,.5);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 5-5 4 4 8-8"/><path d="M17 7h4v4"/></svg>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span style="font-size:15px;font-weight:800;color:#F4F1FB;letter-spacing:-.02em;">SalesMax</span>
+          <span style="font-size:9.5px;font-weight:800;letter-spacing:.04em;color:#fff;background:#8B5CF6;padding:2px 6px;border-radius:5px;">PRO</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div onClick="{{ toggleLang }}" style="display:flex;align-items:center;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:999px;padding:3px;cursor:pointer;font-size:11px;font-weight:700;">
+          <span style="padding:3px 8px;border-radius:999px;{{ enPill }}">EN</span>
+          <span style="padding:3px 8px;border-radius:999px;{{ hiPill }}">हिं</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:3px;background:rgba(255,77,141,0.16);border:1px solid rgba(255,77,141,0.34);border-radius:999px;padding:4px 9px;">
+          <span style="font-size:13px;animation:flame 1.4s ease-in-out infinite;display:inline-block;">🔥</span>
+          <span style="font-size:12px;font-weight:800;color:#FF7FB0;">6</span>
+        </div>
+        <div onClick="{{ openAsk }}" style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;cursor:pointer;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F4F1FB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L3 21l4.9-1Z"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.5-3 2.5M12 17h.01"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex:1;overflow-y:auto;overflow-x:hidden;position:relative;">
+      <!-- HOME -->
+      <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+        <div class="scn" style="padding:18px 16px 24px;">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+            <div>
+              <div style="font-size:22px;font-weight:800;color:#F4F1FB;letter-spacing:-.02em;">{{ loc.greet }}</div>
+              <div style="font-size:12.5px;color:#A99FC4;margin-top:3px;max-width:235px;line-height:1.4;">{{ loc.sub }}</div>
+            </div>
+            <div style="text-align:right;flex:none;"><div style="font-size:10px;color:#A99FC4;font-weight:600;">LEVEL</div><div style="font-size:20px;font-weight:900;color:#A78BFA;line-height:1;">3</div></div>
+          </div>
+
+          <div style="margin-top:16px;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#2A1F4E 0%,#1A1336 100%);border:1px solid rgba(139,92,246,0.3);">
+            <div style="padding:14px 16px 0;display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:10px;font-weight:700;letter-spacing:.1em;color:#A78BFA;text-transform:uppercase;">{{ loc.todayTitle }}</span>
+              <span style="font-size:10px;color:#A99FC4;font-weight:600;">5:00 min</span>
+            </div>
+            <div style="padding:10px 16px 16px;display:flex;align-items:center;gap:13px;">
+              <div onClick="{{ startToday }}" style="width:56px;height:56px;flex:none;border-radius:50%;background:linear-gradient(135deg,#FF4D8D,#FF9D42);display:flex;align-items:center;justify-content:center;cursor:pointer;animation:glow 2.4s ease-in-out infinite;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#161028"><path d="M8 5v14l11-7L8 5Z"/></svg>
+              </div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:15.5px;font-weight:800;color:#F4F1FB;line-height:1.25;">{{ loc.todayLesson }}</div>
+                <div style="font-size:11.5px;color:#A99FC4;margin-top:3px;">Coach Aarav · Learn → Pitch → Role-play</div>
+              </div>
+            </div>
+            <div onClick="{{ startToday }}" style="background:linear-gradient(135deg,#FF4D8D,#FF9D42);color:#241007;text-align:center;padding:13px;font-size:14.5px;font-weight:800;cursor:pointer;">{{ loc.startBtn }} →</div>
+          </div>
+
+          <div onClick="{{ navEarn }}" style="margin-top:14px;border-radius:18px;background:#211A3B;border:1px solid rgba(255,255,255,0.08);padding:15px 16px;cursor:pointer;">
+            <div style="display:flex;align-items:flex-end;justify-content:space-between;">
+              <div><div style="font-size:10px;font-weight:700;letter-spacing:.08em;color:#A99FC4;text-transform:uppercase;">Incentive this month</div><div style="font-size:30px;font-weight:900;color:#FFB23E;letter-spacing:-.02em;line-height:1.05;margin-top:2px;">{{ incFmt }}</div></div>
+              <span style="font-size:9px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#A99FC4;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);padding:3px 7px;border-radius:999px;">sample data</span>
+            </div>
+            <div style="margin-top:12px;height:9px;border-radius:999px;background:rgba(255,255,255,0.08);overflow:hidden;"><div style="height:100%;width:{{ incPctW }};background:linear-gradient(90deg,#2DD4A7,#34D399);border-radius:999px;transition:width .6s cubic-bezier(.2,.8,.2,1);"></div></div>
+            <div style="margin-top:8px;font-size:12.5px;color:#F4F1FB;font-weight:600;">{{ salesNow }} of 10 sales · <span style="color:#34D399;">2 more unlocks Gold →</span></div>
+          </div>
+
+          <div style="margin-top:14px;border-radius:18px;background:linear-gradient(135deg,rgba(139,92,246,0.18),rgba(139,92,246,0.05));border:1px solid rgba(139,92,246,0.32);padding:15px 16px;">
+            <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+              <span style="font-size:10px;font-weight:700;letter-spacing:.08em;color:#A78BFA;text-transform:uppercase;">{{ loc.nba }}</span>
+            </div>
+            <div style="font-size:14.5px;font-weight:800;color:#F4F1FB;">Fix your <span style="color:#A78BFA;">objection handling</span></div>
+            <div style="font-size:12px;color:#A99FC4;margin-top:4px;line-height:1.45;">{{ nbaReason }}</div>
+          </div>
+
+          <div onClick="{{ openSold }}" style="margin-top:16px;border-radius:18px;background:linear-gradient(135deg,#FF4D8D,#FF9D42);padding:16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;box-shadow:0 10px 30px rgba(255,77,141,.4);">
+            <div style="display:flex;align-items:center;gap:11px;">
+              <div style="width:42px;height:42px;border-radius:13px;background:rgba(255,255,255,0.22);display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div>
+              <div><div style="font-size:16px;font-weight:900;color:#fff;">{{ loc.sold }}</div><div style="font-size:11.5px;color:rgba(255,255,255,0.9);margin-top:1px;">Log it → watch your bracket move</div></div>
+            </div>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+          </div>
+
+          <div style="margin-top:18px;text-align:center;font-size:10px;color:#6B6388;line-height:1.5;">Your data stays on your dealership's servers · DPDP-aware<br>Figures are sample data toward your dealership's real incentive scheme</div>
+        </div>
+      </sc-if>
+      <!-- LEARN HUB -->
+      <sc-if value="{{ isLearnHub }}">
+        <div class="scn" style="padding:18px 16px 24px;">
+          <div style="font-size:22px;font-weight:800;color:#F4F1FB;letter-spacing:-.02em;">Learn</div>
+          <div style="font-size:12.5px;color:#A99FC4;margin-top:2px;">Master the product, then drill it live. 5 min each.</div>
+          <div style="margin-top:16px;display:flex;flex-direction:column;gap:11px;">
+            <sc-for list="{{ modulesView }}" as="m" hint-placeholder-count="5">
+              <div onClick="{{ m.onClick }}" style="border-radius:16px;background:#211A3B;border:1px solid rgba(255,255,255,0.08);padding:15px;cursor:pointer;">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+                  <span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:{{ m.color }};background:{{ m.colorBg }};padding:4px 9px;border-radius:999px;">{{ m.skill }}</span>
+                  <sc-if value="{{ m.hasBadge }}"><span style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border-radius:999px;{{ m.badgeStyle }}">{{ m.badge }}</span></sc-if>
+                </div>
+                <div style="font-size:15px;font-weight:800;color:#F4F1FB;margin-top:10px;line-height:1.25;">{{ m.title }}</div>
+                <div style="display:flex;align-items:center;gap:10px;margin-top:12px;">
+                  <div style="flex:1;height:6px;border-radius:999px;background:rgba(255,255,255,0.08);overflow:hidden;"><div style="height:100%;width:{{ m.w }};background:{{ m.color }};border-radius:999px;"></div></div>
+                  <span style="font-size:11px;color:#A99FC4;font-weight:600;">{{ m.dur }}</span>
+                  <span style="font-size:12px;font-weight:800;color:#F4F1FB;display:flex;align-items:center;gap:3px;">Start <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top:16px;text-align:center;font-size:10px;color:#6B6388;">More modules drop weekly · progress is sample data</div>
+        </div>
+      </sc-if>
+
+      <!-- LEARN -->
+      <sc-if value="{{ isLearn }}">
+        <div class="scn" style="padding:14px 16px 24px;">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:16px;">
+            <div style="flex:1;height:4px;border-radius:2px;background:{{ railLearn }};"></div>
+            <div style="flex:1;height:4px;border-radius:2px;background:{{ railPitch }};"></div>
+            <div style="flex:1;height:4px;border-radius:2px;background:{{ railRole }};"></div>
+          </div>
+
+          <sc-if value="{{ lLesson }}">
+            <div>
+              <div onClick="{{ navLearn }}" style="display:flex;align-items:center;gap:5px;color:#A99FC4;font-size:11.5px;font-weight:600;cursor:pointer;margin-bottom:10px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> All modules
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="font-size:10px;font-weight:700;letter-spacing:.1em;color:#A78BFA;text-transform:uppercase;">Step 1 · {{ lessonStep }}</span>
+                <span style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:{{ lessonSkillColor }};background:{{ lessonSkillBg }};padding:3px 8px;border-radius:999px;">{{ lessonSkill }}</span>
+              </div>
+              <div style="font-size:21px;font-weight:800;color:#F4F1FB;margin-top:8px;letter-spacing:-.02em;line-height:1.2;">{{ lessonTitle }}</div>
+              <div style="margin-top:16px;border-radius:20px;background:#211A3B;border:1px solid rgba(255,255,255,0.08);overflow:hidden;">
+                <div style="height:190px;background:linear-gradient(150deg,#332650,#191234);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                  <div style="position:absolute;inset:0;background:radial-gradient(70% 70% at 50% 42%, rgba(139,92,246,0.22), transparent 70%);"></div>
+                  <div style="position:absolute;top:12px;left:14px;display:flex;align-items:center;gap:6px;background:rgba(0,0,0,0.4);border-radius:999px;padding:4px 10px;">
+                    <span style="width:7px;height:7px;border-radius:50%;background:#FF4D8D;display:inline-block;"></span>
+                    <span style="font-size:10px;font-weight:700;color:#F4F1FB;letter-spacing:.04em;">VIDEO LESSON</span>
+                  </div>
+                  <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#FF4D8D,#FF9D42);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 28px rgba(255,77,141,.5);position:relative;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" style="margin-left:3px;"><path d="M8 5v14l11-7L8 5Z"/></svg>
+                  </div>
+                  <div style="position:absolute;left:14px;bottom:18px;font-size:12.5px;font-weight:700;color:#F4F1FB;">Coach Aarav</div>
+                  <div style="position:absolute;right:14px;bottom:16px;background:rgba(0,0,0,0.45);border-radius:6px;padding:3px 7px;font-size:10px;font-weight:700;color:#F4F1FB;">1:00</div>
+                  <div style="position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,0.12);"><div style="height:100%;width:8%;background:linear-gradient(90deg,#FF4D8D,#FF9D42);"></div></div>
+                </div>
+                <div style="padding:16px;">
+                  <div style="font-size:11px;color:#A99FC4;font-weight:600;margin-bottom:10px;">3 things to remember</div>
+                  <sc-for list="{{ lessonPoints }}" as="p" hint-placeholder-count="3">
+                    <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:11px;">
+                      <div style="width:21px;height:21px;flex:none;border-radius:50%;background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.4);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#34D399;">{{ p.n }}</div>
+                      <div style="font-size:13px;color:#E7E2F5;line-height:1.45;">{{ p.t }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              <div onClick="{{ toPitch }}" style="margin-top:16px;background:linear-gradient(135deg,#8B5CF6,#A78BFA);color:#fff;text-align:center;padding:15px;border-radius:14px;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 8px 24px rgba(139,92,246,.4);">Got it — now my pitch →</div>
+              <div style="text-align:center;margin-top:10px;font-size:10px;color:#6B6388;">A customer can walk in any time — leave and come back in seconds</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ lPitch }}">
+            <div>
+              <div style="font-size:10px;font-weight:700;letter-spacing:.1em;color:#FF9D42;text-transform:uppercase;">Step 2 · Pitch · your turn</div>
+              <div style="margin-top:12px;border-radius:16px;background:rgba(255,157,66,0.12);border:1px solid rgba(255,157,66,0.3);padding:14px 15px;">
+                <div style="font-size:10px;font-weight:700;color:#FFB23E;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;">Scenario</div>
+                <div style="font-size:14.5px;color:#F4F1FB;font-weight:600;line-height:1.4;">{{ pitchScenario }}</div>
+              </div>
+              <sc-if value="{{ pIdle }}">
+                <div style="margin-top:30px;display:flex;flex-direction:column;align-items:center;">
+                  <div onClick="{{ doRecord }}" style="width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,#FF4D8D,#FF9D42);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 12px 36px rgba(255,77,141,.45);">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 19v3"/></svg>
+                  </div>
+                  <div style="margin-top:18px;font-size:14px;font-weight:700;color:#F4F1FB;">Tap to record your pitch</div>
+                  <div style="margin-top:5px;font-size:11.5px;color:#A99FC4;">English, Hindi ya mix — jaise floor pe bolte ho</div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ pRec }}">
+                <div style="margin-top:30px;display:flex;flex-direction:column;align-items:center;">
+                  <div style="width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,#FF4D8D,#FF9D42);display:flex;align-items:center;justify-content:center;animation:recPulse 1.2s ease-in-out infinite;">
+                    <div style="display:flex;align-items:center;gap:3px;height:34px;">
+                      <div style="width:4px;height:30px;background:#fff;border-radius:2px;animation:eq .6s ease-in-out infinite;"></div>
+                      <div style="width:4px;height:30px;background:#fff;border-radius:2px;animation:eq .5s ease-in-out infinite .1s;"></div>
+                      <div style="width:4px;height:30px;background:#fff;border-radius:2px;animation:eq .7s ease-in-out infinite .2s;"></div>
+                      <div style="width:4px;height:30px;background:#fff;border-radius:2px;animation:eq .55s ease-in-out infinite .15s;"></div>
+                      <div style="width:4px;height:30px;background:#fff;border-radius:2px;animation:eq .65s ease-in-out infinite .05s;"></div>
+                    </div>
+                  </div>
+                  <div style="margin-top:18px;font-size:14px;font-weight:700;color:#FF7FB0;">Recording… 0:12</div>
+                  <div style="margin-top:5px;font-size:11.5px;color:#A99FC4;">Analysing your structure & clarity</div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ pResult }}">
+                <div style="margin-top:18px;">
+                  <div style="text-align:center;">
+                    <div style="font-size:11px;color:#A99FC4;font-weight:600;">Your pitch score</div>
+                    <div style="font-size:62px;font-weight:900;color:#34D399;line-height:1;letter-spacing:-.03em;animation:popIn .4s;">{{ dispScore }}<span style="font-size:24px;color:#6B6388;">/100</span></div>
+                  </div>
+                  <div style="display:flex;gap:8px;margin-top:18px;">
+                    <div style="flex:1;background:#211A3B;border:1px solid rgba(255,255,255,0.08);border-radius:13px;padding:11px;text-align:center;"><div style="font-size:22px;font-weight:900;color:#F4F1FB;">{{ pStruct }}</div><div style="font-size:10px;color:#A99FC4;margin-top:2px;">Structure</div></div>
+                    <div style="flex:1;background:#211A3B;border:1px solid rgba(255,255,255,0.08);border-radius:13px;padding:11px;text-align:center;"><div style="font-size:22px;font-weight:900;color:#F4F1FB;">{{ pClar }}</div><div style="font-size:10px;color:#A99FC4;margin-top:2px;">Clarity</div></div>
+                    <div style="flex:1;background:#211A3B;border:1px solid rgba(255,255,255,0.08);border-radius:13px;padding:11px;text-align:center;"><div style="font-size:22px;font-weight:900;color:#F4F1FB;">{{ pComp }}</div><div style="font-size:10px;color:#A99FC4;margin-top:2px;">Compliance</div></div>
+                  </div>
+                  <div style="margin-top:14px;background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.3);border-radius:13px;padding:13px 14px;">
+                    <div style="font-size:10px;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;">A strong version sounds like</div>
+                    <div style="font-size:12.5px;color:#E7E2F5;line-height:1.5;font-style:italic;">“Creta thodi upar hai budget se — par S(O) variant me wahi safety aur features, EMI ₹14,200. Aur purani car ka exchange ₹40,000 alag. Total mein ye fit baith jaata hai.”</div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:5px;margin-top:10px;justify-content:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#A99FC4" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg><span style="font-size:10px;color:#A99FC4;">Human-reviewed scoring model · sample data</span></div>
+                  <div onClick="{{ toRole }}" style="margin-top:16px;background:linear-gradient(135deg,#22D3EE,#2DD4A7);color:#06231D;text-align:center;padding:15px;border-radius:14px;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 8px 24px rgba(34,211,238,.3);">Now face the customer →</div>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ lRole }}">
+            <div>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <div style="font-size:10px;font-weight:700;letter-spacing:.1em;color:#22D3EE;text-transform:uppercase;">Step 3 · Role-play</div>
+                <span style="font-size:9px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#A99FC4;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);padding:3px 7px;border-radius:999px;">remembers the manual</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;margin:12px 0 4px;">
+                <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#7C3AED,#A78BFA);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;">RS</div>
+                <div><div style="font-size:14px;font-weight:800;color:#F4F1FB;">Ramesh · AI customer</div><div style="font-size:11px;color:#A99FC4;">Creta walk-in · price-sensitive · pushes back</div></div>
+              </div>
+              <div style="margin-top:10px;display:flex;flex-direction:column;gap:9px;">
+                <sc-for list="{{ roleBubbles }}" as="b" hint-placeholder-count="1">
+                  <sc-if value="{{ b.me }}"><div style="align-self:flex-end;max-width:80%;background:linear-gradient(135deg,#8B5CF6,#A78BFA);color:#fff;padding:10px 13px;border-radius:16px 16px 4px 16px;font-size:13px;line-height:1.4;animation:slideUp .25s;">{{ b.text }}</div></sc-if>
+                  <sc-if value="{{ b.cust }}"><div style="align-self:flex-start;max-width:82%;background:#241D40;color:#E7E2F5;padding:10px 13px;border-radius:16px 16px 16px 4px;font-size:13px;line-height:1.4;border:1px solid rgba(255,255,255,0.07);animation:slideUp .25s;">{{ b.text }}</div></sc-if>
+                </sc-for>
+                <sc-if value="{{ rolePending }}">
+                  <div style="align-self:flex-start;background:#241D40;border:1px solid rgba(255,255,255,0.07);padding:12px 15px;border-radius:16px;display:flex;gap:4px;">
+                    <div style="width:6px;height:6px;border-radius:50%;background:#A99FC4;animation:dot 1.2s infinite;"></div>
+                    <div style="width:6px;height:6px;border-radius:50%;background:#A99FC4;animation:dot 1.2s infinite .2s;"></div>
+                    <div style="width:6px;height:6px;border-radius:50%;background:#A99FC4;animation:dot 1.2s infinite .4s;"></div>
+                  </div>
+                </sc-if>
+              </div>
+              <sc-if value="{{ roleChoicesShown }}">
+                <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px;">
+                  <div style="font-size:10px;color:#A99FC4;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">Pick your reply</div>
+                  <sc-for list="{{ currentChoices }}" as="c" hint-placeholder-count="2">
+                    <div onClick="{{ c.onClick }}" style="background:#211A3B;border:1px solid rgba(255,255,255,0.1);border-radius:13px;padding:12px 14px;font-size:13px;color:#E7E2F5;line-height:1.4;cursor:pointer;">{{ c.text }}</div>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ roleDone }}">
+                <div style="margin-top:16px;background:linear-gradient(135deg,rgba(52,211,153,0.16),rgba(52,211,153,0.04));border:1px solid rgba(52,211,153,0.32);border-radius:16px;padding:16px;text-align:center;animation:popIn .4s;">
+                  <div style="font-size:11px;color:#A99FC4;font-weight:600;">Role-play score</div>
+                  <div style="font-size:44px;font-weight:900;color:#34D399;line-height:1.1;">{{ roleScoreVal }}<span style="font-size:18px;color:#6B6388;">/100</span></div>
+                  <div style="font-size:12.5px;color:#E7E2F5;margin-top:4px;line-height:1.4;">You reframed competitor price without running it down — and grounded the rebuttal in variant + exchange.</div>
+                </div>
+                <div onClick="{{ finishLoop }}" style="margin-top:14px;background:linear-gradient(135deg,#FF4D8D,#FF9D42);color:#241007;text-align:center;padding:15px;border-radius:14px;font-size:15px;font-weight:800;cursor:pointer;">See what this changed →</div>
+              </sc-if>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ lResult }}">
+            <div>
+              <div style="font-size:10px;font-weight:700;letter-spacing:.1em;color:#34D399;text-transform:uppercase;">Loop complete</div>
+              <div style="font-size:22px;font-weight:800;color:#F4F1FB;margin-top:6px;letter-spacing:-.02em;">That moved you forward</div>
+              <div style="margin-top:16px;display:flex;flex-direction:column;gap:11px;">
+                <div style="background:#211A3B;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:14px;">
+                  <div style="display:flex;align-items:center;gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span style="font-size:13px;font-weight:700;color:#F4F1FB;">What you did right</span></div>
+                  <div style="font-size:12.5px;color:#A99FC4;margin-top:6px;line-height:1.45;">Led with value, not discount. Used a concrete EMI + exchange number instead of arguing.</div>
+                </div>
+                <div style="background:#211A3B;border:1px solid rgba(255,157,66,0.28);border-radius:14px;padding:14px;">
+                  <div style="display:flex;align-items:center;gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF9D42" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg><span style="font-size:13px;font-weight:700;color:#F4F1FB;">The one gap to fix</span></div>
+                  <div style="font-size:12.5px;color:#A99FC4;margin-top:6px;line-height:1.45;">You jumped to finance before fully understanding the family's need. Next time: one discovery question first.</div>
+                </div>
+              </div>
+              <div style="margin-top:14px;background:linear-gradient(135deg,rgba(139,92,246,0.16),rgba(34,211,238,0.1));border:1px solid rgba(139,92,246,0.3);border-radius:16px;padding:15px;">
+                <div style="font-size:10px;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">It compounds</div>
+                <div style="display:flex;align-items:center;gap:9px;font-size:12.5px;color:#E7E2F5;flex-wrap:wrap;">
+                  <span style="text-decoration:line-through;color:#6B6388;">Last week: Greeting</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A99FC4" stroke-width="2.4"><path d="m9 6 6 6-6 6"/></svg>
+                  <span style="color:#34D399;font-weight:700;">This week: Objection handling ✓</span>
+                </div>
+                <div style="margin-top:8px;font-size:12.5px;color:#A99FC4;">Next module targets <b style="color:#FF9D42;">needs discovery</b> — exactly the gap above.</div>
+              </div>
+              <div onClick="{{ applyLoop }}" style="margin-top:16px;background:linear-gradient(135deg,#FF4D8D,#FF9D42);color:#241007;text-align:center;padding:15px;border-radius:14px;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 8px 24px rgba(255,77,141,.4);">See it on my skill graph →</div>
+              <div onClick="{{ navHome }}" style="margin-top:10px;text-align:center;padding:12px;font-size:13px;font-weight:600;color:#A99FC4;cursor:pointer;">Back to the floor — you're set for your next walk-in</div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <!-- GROWTH -->
+      <sc-if value="{{ isGrowth }}">
+        <div class="scn" style="padding:18px 16px 24px;">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+            <div><div style="font-size:22px;font-weight:800;color:#F4F1FB;letter-spacing:-.02em;">My growth</div><div style="font-size:12.5px;color:#A99FC4;margin-top:2px;">The app gets smarter about your gaps</div></div>
+            <span style="font-size:9px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#A99FC4;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);padding:3px 7px;border-radius:999px;">sample data</span>
+          </div>
+          <div style="margin-top:16px;border-radius:18px;background:#211A3B;border:1px solid rgba(255,255,255,0.08);padding:16px;">
+            <div style="display:flex;align-items:center;gap:11px;">
+              <div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#8B5CF6,#A78BFA);display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:900;color:#fff;">3</div>
+              <div><div style="font-size:15px;font-weight:800;color:#F4F1FB;">Level 3 · Advancing</div><div style="font-size:11.5px;color:#A99FC4;">Skill index climbing 4 weeks straight</div></div>
+            </div>
+            <div style="margin-top:14px;height:62px;">
+              <svg width="100%" height="62" viewBox="0 0 300 62" preserveAspectRatio="none">
+                <defs><linearGradient id="spk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#34D399" stop-opacity="0.38"/><stop offset="1" stop-color="#34D399" stop-opacity="0"/></linearGradient></defs>
+                <path d="M0 50 L50 46 L100 40 L150 34 L200 30 L250 18 L300 10 L300 62 L0 62 Z" fill="url(#spk)"/>
+                <path d="M0 50 L50 46 L100 40 L150 34 L200 30 L250 18 L300 10" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="300" cy="10" r="4" fill="#34D399"/>
+              </svg>
+            </div>
+          </div>
+          <div style="margin-top:16px;font-size:11px;color:#A99FC4;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;">Your skills</div>
+          <div style="display:flex;flex-direction:column;gap:13px;">
+            <sc-for list="{{ skillsView }}" as="s" hint-placeholder-count="5">
+              <div>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+                  <span style="font-size:13px;font-weight:600;color:#F4F1FB;">{{ s.name }}</span>
+                  <div style="display:flex;align-items:center;gap:7px;">
+                    <sc-if value="{{ s.up }}"><span style="font-size:10.5px;font-weight:800;color:#34D399;">▲ {{ s.delta }}</span></sc-if>
+                    <span style="font-size:13px;font-weight:800;color:#F4F1FB;">{{ s.val }}</span>
+                  </div>
+                </div>
+                <div style="height:8px;border-radius:999px;background:rgba(255,255,255,0.07);overflow:hidden;"><div style="height:100%;width:{{ s.w }};background:{{ s.color }};border-radius:999px;transition:width .7s cubic-bezier(.2,.8,.2,1);"></div></div>
+              </div>
+            </sc-for>
+          </div>
+          <div onClick="{{ startToday }}" style="margin-top:18px;border-radius:16px;background:linear-gradient(135deg,rgba(255,77,141,0.18),rgba(255,157,66,0.06));border:1px solid rgba(255,77,141,0.32);padding:15px;cursor:pointer;">
+            <div style="font-size:10px;font-weight:700;color:#FF7FB0;text-transform:uppercase;letter-spacing:.08em;">Next best action · routes around your weakest skill</div>
+            <div style="font-size:14.5px;font-weight:800;color:#F4F1FB;margin-top:6px;">Drill: Test-drive pitch (49) →</div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- EARN -->
+      <sc-if value="{{ isEarn }}">
+        <div class="scn" style="padding:18px 16px 24px;">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+            <div><div style="font-size:22px;font-weight:800;color:#F4F1FB;letter-spacing:-.02em;">Earnings</div><div style="font-size:12.5px;color:#A99FC4;margin-top:2px;">Progress toward your dealership's scheme</div></div>
+            <span style="font-size:9px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#A99FC4;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);padding:3px 7px;border-radius:999px;">sample data</span>
+          </div>
+          <div style="margin-top:16px;border-radius:20px;background:linear-gradient(160deg,#3A1A33,#1A1336);border:1px solid rgba(255,77,141,0.32);padding:18px;">
+            <div style="font-size:11px;color:#FF9D75;font-weight:600;">This month so far</div>
+            <div style="font-size:42px;font-weight:900;color:#FFB23E;letter-spacing:-.02em;line-height:1;margin-top:3px;">{{ incFmt }}</div>
+            <div style="font-size:12px;color:#A99FC4;margin-top:6px;">{{ salesNow }} sales logged · 2 more to Gold</div>
+          </div>
+          <div style="margin-top:16px;font-size:11px;color:#A99FC4;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:11px;">Incentive ladder</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:12px;background:#211A3B;border:1px solid rgba(52,211,153,0.32);border-radius:14px;padding:13px 15px;">
+              <div style="width:36px;height:36px;border-radius:11px;background:rgba(168,160,196,0.18);display:flex;align-items:center;justify-content:center;font-size:18px;">🥈</div>
+              <div style="flex:1;"><div style="font-size:14px;font-weight:800;color:#F4F1FB;">Silver</div><div style="font-size:11px;color:#A99FC4;">5 sales · ₹4,200 / car</div></div>
+              <span style="font-size:11px;font-weight:800;color:#34D399;">Unlocked ✓</span>
+            </div>
+            <div style="background:#211A3B;border:1.5px solid #FF9D42;border-radius:14px;padding:13px 15px;">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div style="width:36px;height:36px;border-radius:11px;background:rgba(255,157,66,0.2);display:flex;align-items:center;justify-content:center;font-size:18px;">🥇</div>
+                <div style="flex:1;"><div style="font-size:14px;font-weight:800;color:#F4F1FB;">Gold</div><div style="font-size:11px;color:#A99FC4;">10 sales · ₹5,800 / car</div></div>
+                <span style="font-size:11px;font-weight:800;color:#FFB23E;">2 to go</span>
+              </div>
+              <div style="margin-top:11px;height:8px;border-radius:999px;background:rgba(255,255,255,0.08);overflow:hidden;"><div style="height:100%;width:{{ incPctW }};background:linear-gradient(90deg,#FF4D8D,#FF9D42);border-radius:999px;"></div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;background:#211A3B;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:13px 15px;opacity:.72;">
+              <div style="width:36px;height:36px;border-radius:11px;background:rgba(34,211,238,0.18);display:flex;align-items:center;justify-content:center;font-size:18px;">💎</div>
+              <div style="flex:1;"><div style="font-size:14px;font-weight:800;color:#F4F1FB;">Platinum</div><div style="font-size:11px;color:#A99FC4;">16 sales · ₹7,500 / car</div></div>
+              <span style="font-size:11px;font-weight:700;color:#6B6388;">Locked</span>
+            </div>
+          </div>
+          <div style="margin-top:16px;background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.3);border-radius:14px;padding:14px;">
+            <div style="display:flex;align-items:center;gap:7px;margin-bottom:6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 3-3 3 3 5-5"/></svg><span style="font-size:13px;font-weight:700;color:#F4F1FB;">Close the objection gap</span></div>
+            <div style="font-size:12.5px;color:#A99FC4;line-height:1.5;">Consultants who closed the objection-handling gap convert about <b style="color:#A78BFA;">9% more</b> walk-ins. <i>Illustrative benchmark — not a promise.</i></div>
+          </div>
+          <div style="margin-top:16px;font-size:11px;color:#A99FC4;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:9px;">Consultants at your level</div>
+          <div style="background:#211A3B;border:1px solid rgba(255,255,255,0.08);border-radius:14px;overflow:hidden;">
+            <sc-for list="{{ peerBoard }}" as="p" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:11px;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,0.05);{{ p.rowStyle }}">
+                <span style="font-size:12px;font-weight:800;color:#A99FC4;width:16px;">{{ p.rank }}</span>
+                <div style="width:30px;height:30px;border-radius:50%;background:{{ p.av }};display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;">{{ p.ini }}</div>
+                <div style="flex:1;"><div style="font-size:13px;font-weight:700;color:#F4F1FB;">{{ p.name }}</div><div style="font-size:10.5px;color:#A99FC4;">{{ p.region }}</div></div>
+                <span style="font-size:13px;font-weight:800;color:#FFB23E;">{{ p.sales }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top:14px;text-align:center;font-size:10px;color:#6B6388;">Verified via dealership CRM · DPDP-aware · sample data</div>
+        </div>
+      </sc-if>
+
+      <!-- LOG A SALE -->
+      <sc-if value="{{ isLog }}">
+        <div class="scn" style="padding:0;position:relative;min-height:100%;">
+          <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:5;">{{ confettiEls }}</div>
+          <div style="padding:24px 16px 24px;position:relative;z-index:2;">
+            <div style="text-align:center;padding-top:8px;">
+              <div style="font-size:13px;font-weight:700;color:#34D399;text-transform:uppercase;letter-spacing:.1em;">Sale logged 🎉</div>
+              <div style="font-size:46px;font-weight:900;background:linear-gradient(135deg,#FF4D8D,#FF9D42);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-top:10px;line-height:1;animation:popIn .5s;">+₹5,200</div>
+              <div style="font-size:13px;color:#A99FC4;margin-top:6px;">added to your incentive this month</div>
+            </div>
+            <div style="margin-top:22px;background:#211A3B;border:1px solid rgba(255,157,66,0.3);border-radius:18px;padding:16px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:12.5px;color:#F4F1FB;font-weight:700;">Gold bracket</span><span style="font-size:12.5px;color:#FFB23E;font-weight:800;">{{ salesNow }} / 10</span></div>
+              <div style="margin-top:10px;height:11px;border-radius:999px;background:rgba(255,255,255,0.08);overflow:hidden;"><div style="height:100%;width:{{ incPctW }};background:linear-gradient(90deg,#FF4D8D,#FF9D42);border-radius:999px;transition:width .9s cubic-bezier(.2,.8,.2,1);"></div></div>
+              <div style="margin-top:8px;font-size:11.5px;color:#34D399;font-weight:600;">1 more sale to unlock Gold — ₹5,800/car</div>
+            </div>
+            <sc-if value="{{ soldClinchAsk }}">
+              <div style="margin-top:18px;animation:slideUp .3s;">
+                <div style="font-size:14px;font-weight:800;color:#F4F1FB;text-align:center;">What clinched it?</div>
+                <div style="font-size:11px;color:#A99FC4;text-align:center;margin-top:3px;">One tap — it sharpens your skill graph</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px;">
+                  <sc-for list="{{ clinchOptions }}" as="c" hint-placeholder-count="4">
+                    <div onClick="{{ c.onClick }}" style="background:#211A3B;border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:14px 12px;text-align:center;cursor:pointer;"><div style="font-size:20px;">{{ c.emoji }}</div><div style="font-size:12.5px;font-weight:700;color:#F4F1FB;margin-top:5px;">{{ c.label }}</div></div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ soldClinched }}">
+              <div style="margin-top:18px;background:linear-gradient(135deg,rgba(52,211,153,0.16),rgba(52,211,153,0.04));border:1px solid rgba(52,211,153,0.32);border-radius:16px;padding:15px;text-align:center;animation:popIn .4s;">
+                <div style="font-size:13px;color:#E7E2F5;">Logged. <b style="color:#34D399;">{{ clinchLabel }} ▲</b> on your skill graph.</div>
+              </div>
+            </sc-if>
+            <div style="margin-top:20px;display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+              <span style="font-size:11px;color:#A99FC4;font-weight:700;text-transform:uppercase;letter-spacing:.06em;">Live · consultants like you</span>
+              <span style="font-size:10px;color:#34D399;font-weight:700;">● 1,284 sold this month</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <sc-for list="{{ saleFeed }}" as="f" hint-placeholder-count="3">
+                <div style="display:flex;align-items:center;gap:10px;background:#211A3B;border:1px solid rgba(255,255,255,0.07);border-radius:13px;padding:10px 13px;">
+                  <div style="width:30px;height:30px;border-radius:50%;background:{{ f.av }};display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;">{{ f.ini }}</div>
+                  <div style="flex:1;font-size:12px;color:#E7E2F5;line-height:1.35;">{{ f.text }}</div>
+                  <span style="font-size:8px;font-weight:600;color:#34D399;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.3);padding:2px 5px;border-radius:5px;white-space:nowrap;">CRM ✓</span>
+                </div>
+              </sc-for>
+            </div>
+            <div onClick="{{ navHome }}" style="margin-top:20px;text-align:center;padding:14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:14px;font-size:14px;font-weight:700;color:#F4F1FB;cursor:pointer;">Back to the floor →</div>
+            <div style="margin-top:10px;text-align:center;font-size:10px;color:#6B6388;">All figures sample data · verified via dealership CRM</div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- COMPETE -->
+      <sc-if value="{{ isCompete }}">
+        <div class="scn" style="padding:18px 16px 24px;">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+            <div><div style="font-size:22px;font-weight:800;color:#F4F1FB;letter-spacing:-.02em;">Compete</div><div style="font-size:12.5px;color:#A99FC4;margin-top:2px;">The national 3-month season</div></div>
+            <span style="font-size:9px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#A99FC4;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);padding:3px 7px;border-radius:999px;">sample data</span>
+          </div>
+
+          <div style="margin-top:16px;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,#7C3AED,#A78BFA);position:relative;">
+            <div style="position:absolute;right:-20px;top:-20px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,0.12);"></div>
+            <div style="position:relative;padding:16px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-size:10px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,0.85);text-transform:uppercase;">{{ season.round }}</span>
+                <span style="font-size:11px;font-weight:800;color:#fff;background:rgba(0,0,0,0.22);padding:4px 10px;border-radius:999px;">{{ season.days }} days left</span>
+              </div>
+              <div style="display:flex;align-items:flex-end;gap:14px;margin-top:14px;">
+                <div><div style="font-size:11px;color:rgba(255,255,255,0.8);">Your rank</div><div style="font-size:34px;font-weight:900;color:#fff;line-height:1;">#{{ season.rank }}</div></div>
+                <div style="padding-bottom:3px;"><div style="font-size:11px;color:rgba(255,255,255,0.8);">Points</div><div style="font-size:20px;font-weight:800;color:#FFD84D;">{{ season.points }}</div></div>
+              </div>
+              <div style="margin-top:14px;background:rgba(0,0,0,0.22);border-radius:12px;padding:10px 12px;font-size:12px;color:#fff;font-weight:600;">⚡ You're <b style="color:#FFD84D;">40 pts</b> behind 3rd — close it this week.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px;margin-top:14px;">
+            <div onClick="{{ goBuild }}" style="flex:1;border-radius:16px;background:#211A3B;border:1px solid rgba(255,77,141,0.3);padding:15px 13px;cursor:pointer;">
+              <div style="font-size:24px;">🛠️</div>
+              <div style="font-size:14px;font-weight:800;color:#F4F1FB;margin-top:8px;">Build a persona</div>
+              <div style="font-size:11px;color:#A99FC4;margin-top:3px;line-height:1.35;">Create a tough customer. Best ones graduate national.</div>
+            </div>
+            <div onClick="{{ goPlay }}" style="flex:1;border-radius:16px;background:#211A3B;border:1px solid rgba(34,211,238,0.3);padding:15px 13px;cursor:pointer;">
+              <div style="font-size:24px;">🎯</div>
+              <div style="font-size:14px;font-weight:800;color:#F4F1FB;margin-top:8px;">Play a persona</div>
+              <div style="font-size:11px;color:#A99FC4;margin-top:3px;line-height:1.35;">Beat hard personas, earn weighted points.</div>
+            </div>
+          </div>
+
+          <div onClick="{{ navTough }}" style="margin-top:12px;border-radius:16px;background:linear-gradient(135deg,rgba(34,211,238,0.12),rgba(139,92,246,0.08));border:1px dashed rgba(34,211,238,0.4);padding:14px 15px;cursor:pointer;display:flex;align-items:center;gap:12px;">
+            <div style="font-size:22px;">🧘</div>
+            <div style="flex:1;"><div style="font-size:13.5px;font-weight:800;color:#F4F1FB;">Tough Situations <span style="font-size:9px;font-weight:700;color:#22D3EE;background:rgba(34,211,238,0.14);padding:2px 6px;border-radius:5px;margin-left:4px;">PRIVATE</span></div><div style="font-size:11px;color:#A99FC4;margin-top:2px;">Practise a tough manager or a rough day — just for you.</div></div>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A99FC4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+          </div>
+
+          <div style="margin-top:18px;font-size:11px;color:#A99FC4;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:9px;">Team standings · {{ season.team }}</div>
+          <div style="background:#211A3B;border:1px solid rgba(255,255,255,0.08);border-radius:14px;overflow:hidden;">
+            <sc-for list="{{ teamBoard }}" as="t" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:11px;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,0.05);{{ t.rowStyle }}">
+                <span style="font-size:12px;font-weight:800;color:#A99FC4;width:16px;">{{ t.rank }}</span>
+                <div style="width:28px;height:28px;border-radius:8px;background:{{ t.av }};"></div>
+                <div style="flex:1;font-size:13px;font-weight:700;color:#F4F1FB;">{{ t.name }}</div>
+                <span style="font-size:12.5px;font-weight:800;color:#FFD84D;">{{ t.pts }}</span>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="margin-top:16px;font-size:11px;color:#A99FC4;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:9px;">Top closers near you</div>
+          <div style="background:#211A3B;border:1px solid rgba(255,255,255,0.08);border-radius:14px;overflow:hidden;">
+            <sc-for list="{{ closerBoard }}" as="c" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:11px;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,0.05);{{ c.rowStyle }}">
+                <span style="font-size:12px;font-weight:800;color:#A99FC4;width:16px;">{{ c.rank }}</span>
+                <div style="width:30px;height:30px;border-radius:50%;background:{{ c.av }};display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;">{{ c.ini }}</div>
+                <div style="flex:1;"><div style="font-size:13px;font-weight:700;color:#F4F1FB;">{{ c.name }}</div><div style="font-size:10.5px;color:#A99FC4;">{{ c.region }}</div></div>
+                <span style="font-size:12.5px;font-weight:800;color:#FFD84D;">{{ c.pts }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- PERSONA BUILD -->
+      <sc-if value="{{ isBuild }}">
+        <div class="scn" style="padding:16px 16px 24px;">
+          <div onClick="{{ navCompete }}" style="display:flex;align-items:center;gap:6px;color:#A99FC4;font-size:12px;font-weight:600;cursor:pointer;margin-bottom:12px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> Compete
+          </div>
+          <sc-if value="{{ personaFormShown }}">
+            <div>
+              <div style="font-size:21px;font-weight:800;color:#F4F1FB;letter-spacing:-.02em;">Build a persona</div>
+              <div style="font-size:12.5px;color:#A99FC4;margin-top:3px;line-height:1.4;">Make a customer tough but fair. Scored on difficulty, realism & popularity.</div>
+
+              <div style="margin-top:18px;font-size:11px;color:#A99FC4;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Name your persona</div>
+              <input value="{{ personaName }}" onInput="{{ personaNameChange }}" placeholder="e.g. Budget-tight Bhaisaab" style="width:100%;background:#211A3B;border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:13px 15px;font-size:14px;color:#F4F1FB;outline:none;font-family:'Inter',sans-serif;"/>
+
+              <div style="margin-top:16px;font-size:11px;color:#A99FC4;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Type</div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                <sc-for list="{{ personaTypes }}" as="t" hint-placeholder-count="4">
+                  <div onClick="{{ t.onClick }}" style="padding:9px 13px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);font-size:12.5px;font-weight:700;cursor:pointer;{{ t.style }}">{{ t.label }}</div>
+                </sc-for>
+              </div>
+
+              <div style="margin-top:16px;font-size:11px;color:#A99FC4;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Difficulty</div>
+              <div style="display:flex;gap:8px;">
+                <sc-for list="{{ diffChips }}" as="d" hint-placeholder-count="3">
+                  <div onClick="{{ d.onClick }}" style="flex:1;text-align:center;padding:11px;border-radius:12px;font-size:13px;font-weight:800;cursor:pointer;border:1.5px solid {{ d.border }};background:{{ d.bg }};color:{{ d.txt }};">{{ d.label }}</div>
+                </sc-for>
+              </div>
+
+              <div style="margin-top:16px;font-size:11px;color:#A99FC4;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Their opening line</div>
+              <textarea value="{{ personaLine }}" onInput="{{ personaLineChange }}" placeholder="“Maine to Maruti me hi 3 gaadi li hai, Hyundai kyun loon?”" rows="3" style="width:100%;background:#211A3B;border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:13px 15px;font-size:13.5px;color:#F4F1FB;outline:none;font-family:'Inter',sans-serif;resize:none;line-height:1.4;"></textarea>
+
+              <div onClick="{{ submitPersona }}" style="margin-top:18px;background:linear-gradient(135deg,#FF4D8D,#FF9D42);color:#241007;text-align:center;padding:15px;border-radius:14px;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 8px 24px rgba(255,77,141,.4);">Submit to season →</div>
+              <div style="margin-top:10px;text-align:center;font-size:10px;color:#6B6388;">Vetted by AI + human reviewers — rewards “hard but fair”, not impossible.</div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ personaSubmitted }}">
+            <div style="text-align:center;padding-top:10px;animation:popIn .4s;">
+              <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#8B5CF6,#A78BFA);display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:32px;">📨</div>
+              <div style="font-size:20px;font-weight:800;color:#F4F1FB;margin-top:16px;">Persona in review</div>
+              <div style="font-size:12.5px;color:#A99FC4;margin-top:5px;line-height:1.45;max-width:280px;margin-left:auto;margin-right:auto;">Popular, vetted personas graduate to the national library — and earn you points every time someone plays them.</div>
+              <div style="margin-top:20px;display:flex;gap:9px;">
+                <div style="flex:1;background:#211A3B;border:1px solid rgba(255,255,255,0.08);border-radius:13px;padding:13px;"><div style="font-size:22px;font-weight:900;color:#FF4D8D;">8.4</div><div style="font-size:10px;color:#A99FC4;margin-top:2px;">Difficulty</div></div>
+                <div style="flex:1;background:#211A3B;border:1px solid rgba(255,255,255,0.08);border-radius:13px;padding:13px;"><div style="font-size:22px;font-weight:900;color:#34D399;">7.9</div><div style="font-size:10px;color:#A99FC4;margin-top:2px;">Realism</div></div>
+                <div style="flex:1;background:#211A3B;border:1px solid rgba(255,255,255,0.08);border-radius:13px;padding:13px;"><div style="font-size:22px;font-weight:900;color:#FFB23E;">—</div><div style="font-size:10px;color:#A99FC4;margin-top:2px;">Popularity</div></div>
+              </div>
+              <div onClick="{{ navCompete }}" style="margin-top:18px;background:#211A3B;border:1px solid rgba(255,255,255,0.12);color:#F4F1FB;text-align:center;padding:14px;border-radius:14px;font-size:14px;font-weight:700;cursor:pointer;">Back to Compete</div>
+              <div style="margin-top:12px;font-size:10px;color:#6B6388;">Scores are sample data</div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <!-- PERSONA PLAY -->
+      <sc-if value="{{ isPlay }}">
+        <div class="scn" style="padding:16px 16px 24px;">
+          <div onClick="{{ navCompete }}" style="display:flex;align-items:center;gap:6px;color:#A99FC4;font-size:12px;font-weight:600;cursor:pointer;margin-bottom:12px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> Compete
+          </div>
+          <div style="font-size:21px;font-weight:800;color:#F4F1FB;letter-spacing:-.02em;">Play a persona</div>
+          <div style="background:linear-gradient(135deg,rgba(34,211,238,0.14),rgba(34,211,238,0.04));border:1px solid rgba(34,211,238,0.3);border-radius:12px;padding:10px 13px;margin-top:10px;font-size:11.5px;color:#7FE9F5;font-weight:600;">🔥 2 new personas dropped this week — win them while they're hot.</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;">
+            <sc-for list="{{ personaGrid }}" as="p" hint-placeholder-count="6">
+              <div onClick="{{ p.onClick }}" style="border-radius:16px;background:#211A3B;border:1px solid rgba(255,255,255,0.08);padding:13px;cursor:pointer;position:relative;">
+                <sc-if value="{{ p.fresh }}"><span style="position:absolute;top:9px;right:9px;font-size:8px;font-weight:800;color:#22D3EE;background:rgba(34,211,238,0.16);padding:2px 5px;border-radius:5px;">NEW</span></sc-if>
+                <div style="font-size:30px;">{{ p.glyph }}</div>
+                <div style="font-size:12.5px;font-weight:800;color:#F4F1FB;margin-top:8px;line-height:1.25;">{{ p.name }}</div>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:9px;">
+                  <span style="font-size:10px;font-weight:800;color:{{ p.diffColor }};background:{{ p.diffBg }};padding:3px 8px;border-radius:999px;">{{ p.diff }}</span>
+                  <span style="font-size:10px;color:#A99FC4;">▶ {{ p.plays }}</span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top:14px;text-align:center;font-size:10px;color:#6B6388;">Winning earns difficulty-weighted points for you and {{ season.team }} · sample data</div>
+        </div>
+      </sc-if>
+
+      <!-- TOUGH SITUATIONS -->
+      <sc-if value="{{ isTough }}">
+        <div class="scn" style="padding:16px 16px 24px;">
+          <div onClick="{{ navCompete }}" style="display:flex;align-items:center;gap:6px;color:#A99FC4;font-size:12px;font-weight:600;cursor:pointer;margin-bottom:12px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> Compete
+          </div>
+
+          <sc-if value="{{ toughList }}">
+            <div>
+              <div style="font-size:21px;font-weight:800;color:#F4F1FB;letter-spacing:-.02em;">Tough Situations</div>
+              <div style="font-size:12.5px;color:#A99FC4;margin-top:3px;">Build resilience for the hard days — not just the sale.</div>
+              <div style="margin-top:14px;background:linear-gradient(135deg,rgba(34,211,238,0.12),rgba(52,211,153,0.08));border:1px solid rgba(34,211,238,0.3);border-radius:14px;padding:14px;display:flex;gap:11px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px;"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+                <div><div style="font-size:13px;font-weight:800;color:#F4F1FB;">This is your space</div><div style="font-size:11.5px;color:#A99FC4;margin-top:3px;line-height:1.45;">Your manager never sees this. Personas are fictional. Everything here is private to you — practise, vent safely, get stronger.</div></div>
+              </div>
+              <div style="margin-top:16px;display:flex;flex-direction:column;gap:10px;">
+                <sc-for list="{{ toughCards }}" as="t" hint-placeholder-count="3">
+                  <div onClick="{{ t.onClick }}" style="border-radius:15px;background:#211A3B;border:1px solid rgba(255,255,255,0.08);padding:14px;display:flex;align-items:center;gap:13px;cursor:pointer;">
+                    <div style="width:44px;height:44px;flex:none;border-radius:13px;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;font-size:22px;">{{ t.glyph }}</div>
+                    <div style="flex:1;"><div style="font-size:14px;font-weight:800;color:#F4F1FB;">{{ t.name }}</div><div style="font-size:11.5px;color:#A99FC4;margin-top:2px;">{{ t.desc }}</div></div>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A99FC4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ toughSel }}">
+            <div>
+              <div onClick="{{ backToughList }}" style="display:flex;align-items:center;gap:9px;margin-bottom:6px;">
+                <div style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;font-size:19px;">{{ toughGlyph }}</div>
+                <div><div style="font-size:14px;font-weight:800;color:#F4F1FB;">{{ toughName }}</div><div style="font-size:10.5px;color:#22D3EE;font-weight:600;">🔒 Private practice · fictional</div></div>
+              </div>
+              <div style="margin-top:10px;display:flex;flex-direction:column;gap:9px;">
+                <sc-for list="{{ toughBubbles }}" as="b" hint-placeholder-count="1">
+                  <sc-if value="{{ b.me }}"><div style="align-self:flex-end;max-width:82%;background:linear-gradient(135deg,#8B5CF6,#A78BFA);color:#fff;padding:10px 13px;border-radius:16px 16px 4px 16px;font-size:13px;line-height:1.4;animation:slideUp .25s;">{{ b.text }}</div></sc-if>
+                  <sc-if value="{{ b.them }}"><div style="align-self:flex-start;max-width:82%;background:#241D40;color:#E7E2F5;padding:10px 13px;border-radius:16px 16px 16px 4px;font-size:13px;line-height:1.4;border:1px solid rgba(255,255,255,0.07);animation:slideUp .25s;">{{ b.text }}</div></sc-if>
+                </sc-for>
+                <sc-if value="{{ toughPending }}">
+                  <div style="align-self:flex-start;background:#241D40;border:1px solid rgba(255,255,255,0.07);padding:12px 15px;border-radius:16px;display:flex;gap:4px;"><div style="width:6px;height:6px;border-radius:50%;background:#A99FC4;animation:dot 1.2s infinite;"></div><div style="width:6px;height:6px;border-radius:50%;background:#A99FC4;animation:dot 1.2s infinite .2s;"></div><div style="width:6px;height:6px;border-radius:50%;background:#A99FC4;animation:dot 1.2s infinite .4s;"></div></div>
+                </sc-if>
+              </div>
+              <sc-if value="{{ toughChoicesShown }}">
+                <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px;">
+                  <div style="font-size:10px;color:#A99FC4;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">How do you respond?</div>
+                  <sc-for list="{{ toughChoices }}" as="c" hint-placeholder-count="2">
+                    <div onClick="{{ c.onClick }}" style="background:#211A3B;border:1px solid rgba(255,255,255,0.1);border-radius:13px;padding:12px 14px;font-size:13px;color:#E7E2F5;line-height:1.4;cursor:pointer;">{{ c.text }}</div>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ toughDone }}">
+                <div style="margin-top:16px;background:linear-gradient(135deg,rgba(34,211,238,0.14),rgba(52,211,153,0.06));border:1px solid rgba(34,211,238,0.3);border-radius:16px;padding:15px;animation:popIn .4s;">
+                  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;"><span style="font-size:16px;">🧭</span><span style="font-size:12.5px;font-weight:800;color:#F4F1FB;">Coaching · build agency</span></div>
+                  <div style="font-size:12.5px;color:#E7E2F5;line-height:1.5;">{{ toughTip }}</div>
+                </div>
+                <div onClick="{{ backToughList }}" style="margin-top:14px;background:#211A3B;border:1px solid rgba(255,255,255,0.12);color:#F4F1FB;text-align:center;padding:14px;border-radius:14px;font-size:14px;font-weight:700;cursor:pointer;">Try another situation</div>
+                <div style="margin-top:10px;text-align:center;font-size:10px;color:#6B6388;">Private to you · never shared with your manager</div>
+              </sc-if>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <!--SCREENS_END-->
+    </div>
+
+    <!-- ASK OVERLAY -->
+    <sc-if value="{{ askOpen }}">
+      <div style="position:absolute;inset:0;z-index:90;background:rgba(7,4,14,0.62);display:flex;flex-direction:column;justify-content:flex-end;animation:slideUp .2s;">
+        <div onClick="{{ closeAsk }}" style="flex:1;"></div>
+        <div style="background:#1A1336;border-top:1px solid rgba(255,255,255,0.1);border-radius:24px 24px 0 0;max-height:78%;display:flex;flex-direction:column;">
+          <div style="padding:16px 18px 10px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.06);">
+            <div style="display:flex;align-items:center;gap:9px;">
+              <div style="width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#8B5CF6,#A78BFA);display:flex;align-items:center;justify-content:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L3 21l4.9-1Z"/></svg></div>
+              <div><div style="font-size:14px;font-weight:800;color:#F4F1FB;">Ask SalesMax</div><div style="font-size:10px;color:#A99FC4;">Reflects your dealership's approved playbook</div></div>
+            </div>
+            <div onClick="{{ closeAsk }}" style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;cursor:pointer;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A99FC4" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></div>
+          </div>
+          <div style="flex:1;overflow-y:auto;padding:14px 18px;display:flex;flex-direction:column;gap:10px;min-height:200px;">
+            <sc-if value="{{ askEmpty }}">
+              <div style="font-size:11.5px;color:#A99FC4;font-weight:600;margin-bottom:2px;">Floor pe atki hui baat? 5 second me jawab:</div>
+              <sc-for list="{{ askSuggestions }}" as="s" hint-placeholder-count="3">
+                <div onClick="{{ s.onClick }}" style="background:#211A3B;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:11px 13px;font-size:12.5px;color:#E7E2F5;cursor:pointer;line-height:1.35;">{{ s.text }}</div>
+              </sc-for>
+            </sc-if>
+            <sc-for list="{{ askLog }}" as="m" hint-placeholder-count="0">
+              <sc-if value="{{ m.q }}"><div style="align-self:flex-end;max-width:82%;background:linear-gradient(135deg,#8B5CF6,#A78BFA);color:#fff;padding:10px 13px;border-radius:15px 15px 4px 15px;font-size:13px;line-height:1.4;">{{ m.text }}</div></sc-if>
+              <sc-if value="{{ m.a }}"><div style="align-self:flex-start;max-width:90%;background:#241D40;border:1px solid rgba(255,255,255,0.07);color:#E7E2F5;padding:11px 13px;border-radius:15px 15px 15px 4px;font-size:13px;line-height:1.5;">{{ m.text }}<div style="margin-top:8px;font-size:9px;color:#A78BFA;font-weight:700;text-transform:uppercase;letter-spacing:.05em;">✓ Approved playbook · sample</div></div></sc-if>
+            </sc-for>
+          </div>
+          <div style="padding:12px 16px 18px;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:9px;align-items:center;">
+            <input value="{{ askText }}" onInput="{{ askChange }}" placeholder="Type a floor question…" style="flex:1;background:#241D40;border:1px solid rgba(255,255,255,0.12);border-radius:999px;padding:11px 16px;font-size:13px;color:#F4F1FB;outline:none;font-family:'Inter',sans-serif;"/>
+            <div onClick="{{ askSend }}" style="width:42px;height:42px;flex:none;border-radius:50%;background:linear-gradient(135deg,#8B5CF6,#A78BFA);display:flex;align-items:center;justify-content:center;cursor:pointer;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4 20-7Z"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- BOTTOM NAV -->
+    <div style="height:70px;flex:none;background:rgba(16,11,30,0.97);border-top:1px solid rgba(255,255,255,0.07);display:flex;align-items:stretch;padding:0 4px 8px;">
+      <div onClick="{{ navHome }}" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:{{ cHome }};">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V21H3V10.5Z"/></svg>
+        <span style="font-size:9.5px;font-weight:700;">Home</span>
+      </div>
+      <div onClick="{{ navLearn }}" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:{{ cLearn }};">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2 8l10 4 8-3.2V15"/><path d="M6 10.5V16c0 1.1 2.7 2.5 6 2.5s6-1.4 6-2.5v-5.5"/></svg>
+        <span style="font-size:9.5px;font-weight:700;">Learn</span>
+      </div>
+      <div onClick="{{ navCompete }}" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:{{ cCompete }};">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v3a6 6 0 0 1-12 0V4Z"/><path d="M18 5h3v2a3 3 0 0 1-3 3M6 5H3v2a3 3 0 0 0 3 3M9 19h6M12 13v6"/></svg>
+        <span style="font-size:9.5px;font-weight:700;">Compete</span>
+      </div>
+      <div onClick="{{ navGrowth }}" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:{{ cGrowth }};">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 5-5 4 4 8-8"/><path d="M16 7h5v5"/></svg>
+        <span style="font-size:9.5px;font-weight:700;">Growth</span>
+      </div>
+      <div onClick="{{ navEarn }}" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:{{ cEarn }};">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h15a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/><path d="M3 7V6a2 2 0 0 1 2-2h11M16 13h.5"/></svg>
+        <span style="font-size:9.5px;font-weight:700;">Earn</span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    screen: 'home', lang: 'en', salesNow: 8, activeModule: 'objection',
+    learnStep: 'lesson', pitchState: 'idle', dispScore: 0,
+    roleBubbles: [], roleRound: 0, rolePending: false, roleDone: false,
+    askOpen: false, askLog: [], askText: '',
+    celebrate: false, clinch: null, bumpObjection: false,
+    persona: { name: '', type: 'Maruti-loyalist haggler', diff: 'Hard', line: '' }, personaSubmitted: false,
+    toughSel: null, toughBubbles: [], toughPending: false, toughDone: false,
+  };
+
+  L = {
+    en: { greet: 'Good morning, Rohit', sub: 'Two walk-ins booked yesterday. Aaj ka target: keep the streak alive.', todayTitle: "Today's 5-min capsule", todayLesson: '“The EMI is too high” — turn it into a booking', startBtn: 'Start now · 5 min', nba: 'Your next best move', sold: 'I closed a sale', },
+    hi: { greet: 'सुप्रभात, Rohit', sub: 'कल दो बुकिंग हुईं। आज का target: streak बनाए रखो।', todayTitle: 'आज का 5-मिनट capsule', todayLesson: '“EMI ज़्यादा है” — इसे booking में बदलो', startBtn: 'अभी शुरू करें · 5 min', nba: 'आपकी अगली सबसे अच्छी चाल', sold: 'मैंने car बेची', },
+  };
+
+  modules = [
+    { id: 'product', skill: 'Feature mastery', color: '#22D3EE', title: 'Creta — variants & feature mastery', step: 'Product · 60 sec', dur: '1:00', progress: 20, badge: 'New',
+      scenario: 'A walk-in loves the Creta but doesn’t know the variants. Walk them up from E to SX(O) by what they actually need.',
+      points: [ { n: 1, t: 'Know the ladder: E → S → S(O) → SX → SX(O). Sell the variant that fits the need, not the top one.' }, { n: 2, t: 'Three hero features that close: 6 airbags + 5-star safety, panoramic sunroof, ventilated seats.' }, { n: 3, t: 'Numbers they remember: ~17–18 km/l, Level-2 ADAS on top trims. Stay plausible — never oversell.' } ] },
+    { id: 'objection', skill: 'Objection handling', color: '#A78BFA', title: 'Handling “the EMI is too high”', step: 'Learn · 60 sec', dur: '1:00', progress: 60, badge: 'Today',
+      scenario: 'A walk-in says the Creta is over budget. Pitch the right variant + finance in 30 seconds.',
+      points: [ { n: 1, t: 'Never argue the number. Reframe to monthly EMI + exchange value.' }, { n: 2, t: 'Match the variant to the need — don’t defend the top model.' }, { n: 3, t: 'One concrete figure beats ten adjectives. “₹14,200/month” lands.' } ] },
+    { id: 'finance', skill: 'Finance options', color: '#34D399', title: 'Exchange + EMI, made simple', step: 'Finance · 60 sec', dur: '1:00', progress: 45,
+      scenario: 'Customer is tangled in down-payment vs EMI vs exchange. Make the math feel easy.',
+      points: [ { n: 1, t: 'Quote the monthly EMI first, total second — small numbers feel reachable.' }, { n: 2, t: 'Fold exchange value into the down-payment story, not as an afterthought.' }, { n: 3, t: 'One clean line beats a long explanation: down-payment, EMI, tenure.' } ] },
+    { id: 'testdrive', skill: 'Test-drive pitch', color: '#FF9D42', title: 'Turn a browser into a test drive', step: 'Test-drive · 60 sec', dur: '1:00', progress: 15,
+      scenario: 'A hesitant walk-in says “just looking”. Get them into the driver’s seat in one line.',
+      points: [ { n: 1, t: 'Lower the ask: “Sirf 5 minute, no pressure” beats “take a test drive”.' }, { n: 2, t: 'Put the family in the back seat — they sell it to each other.' }, { n: 3, t: 'A seated customer books ~2x more. Always offer — never wait to be asked.' } ] },
+    { id: 'needs', skill: 'Needs discovery', color: '#FF4D8D', title: 'Ask before you pitch', step: 'Discovery · 60 sec', dur: '1:00', progress: 30,
+      scenario: 'New walk-in, family of four. Find their real need before you talk variants.',
+      points: [ { n: 1, t: 'Two questions first: who drives, and what’s the weekend use?' }, { n: 2, t: 'Listen for budget signals — don’t lead with the price question.' }, { n: 3, t: 'Match one feature to one stated need. That’s a pitch they trust.' } ] },
+  ];
+
+  roleScript = [
+    { open: 'Creta achhi hai, par Nexon ₹80,000 sasti mil rahi hai. Itna paisa kyun?',
+      choices: [
+        { text: 'Nexon bhi badhiya hai sir — par Creta ki safety rating aur resale long-term me sasti padti hai.', good: true },
+        { text: 'Arre Nexon to ekdam basic hai sir, mat lijiye.', good: false } ],
+      counterGood: 'Hmm theek hai... par EMI to phir bhi zyada hogi na?',
+      counterBad: 'Aap competitor ko kyun gira rahe ho? Mujhe bharosa nahi ho raha.' },
+    { open: '',
+      choices: [
+        { text: 'S(O) variant lijiye — wahi features, EMI ₹14,200. Aur purani car ka exchange ₹40,000 alag. Number fit baith jaata hai.', good: true },
+        { text: 'EMI thodi zyada hai bas sir, adjust ho jayega.', good: false } ],
+      counterGood: '', counterBad: '' },
+  ];
+
+  clinchData = [
+    { key: 'objection', emoji: '🛡️', label: 'Objection handling' },
+    { key: 'testdrive', emoji: '🚗', label: 'Test drive' },
+    { key: 'finance', emoji: '💳', label: 'Finance' },
+    { key: 'rapport', emoji: '🤝', label: 'Rapport' },
+  ];
+
+  feed = [
+    { ini: 'RK', av: 'linear-gradient(135deg,#8B5CF6,#A78BFA)', text: 'Rahul just booked a Creta in Pune' },
+    { ini: 'SN', av: 'linear-gradient(135deg,#22D3EE,#2DD4A7)', text: 'Sneha closed her 3rd this week — Level 3 like you' },
+    { ini: 'AM', av: 'linear-gradient(135deg,#FF4D8D,#FF9D42)', text: 'Amit hit a 9-day streak in Jaipur' },
+  ];
+
+  peers = [
+    { rank: 1, ini: 'PV', av: 'linear-gradient(135deg,#FF4D8D,#FF9D42)', name: 'Priya V.', region: 'Pune · Level 3', sales: 11 },
+    { rank: 2, ini: 'YOU', av: 'linear-gradient(135deg,#8B5CF6,#A78BFA)', name: 'You', region: 'Pune · Level 3', sales: 8, me: true },
+    { rank: 3, ini: 'KS', av: 'linear-gradient(135deg,#22D3EE,#2DD4A7)', name: 'Karan S.', region: 'Nashik · Level 3', sales: 7 },
+  ];
+
+  askSuggest = [
+    { q: 'Customer says Nexon is cheaper — what do I say?', a: 'Don’t run the Nexon down. Acknowledge it, then pivot to value: “Bilkul, Nexon ka price acha hai. Par Creta ki 5-star safety, resale aur service network long run me cheaper padta hai — aur S(O) variant me EMI sirf ₹14,200, exchange alag.”' },
+    { q: 'They want a bigger discount than I can give.', a: 'Hold the price, add value. Offer accessories/extended warranty within your approved kit, and re-anchor on EMI + exchange rather than sticker price. Never promise a discount you can’t sign off — that breaks trust on delivery day.' },
+    { q: 'How do I pitch a test drive to a hesitant walk-in?', a: 'Lower the commitment: “Sirf 5 minute, ghar tak ki feel lijiye — no pressure.” Put the family in the back seat so they sell it to each other. A seated customer books ~2x more.' },
+  ];
+
+  season = { round: 'Round 2 of 3', days: 18, rank: 7, points: 1840, behind: 40, team: 'Pune Phoenix' };
+  teamBoard = [
+    { rank: 1, name: 'Mumbai Mavericks', pts: 14820, av: 'linear-gradient(135deg,#FF4D8D,#FF9D42)' },
+    { rank: 2, name: 'Pune Phoenix', pts: 13110, me: true, av: 'linear-gradient(135deg,#8B5CF6,#A78BFA)' },
+    { rank: 3, name: 'Delhi Drivers', pts: 12640, av: 'linear-gradient(135deg,#22D3EE,#2DD4A7)' },
+  ];
+  closerBoard = [
+    { rank: 5, ini: 'NT', name: 'Neha T.', region: 'Pune', pts: 2010, av: 'linear-gradient(135deg,#22D3EE,#2DD4A7)' },
+    { rank: 6, ini: 'AS', name: 'Arjun S.', region: 'Pune', pts: 1920, av: 'linear-gradient(135deg,#FF4D8D,#FF9D42)' },
+    { rank: 7, ini: 'YOU', name: 'You', region: 'Pune', pts: 1840, me: true, av: 'linear-gradient(135deg,#8B5CF6,#A78BFA)' },
+  ];
+  personaGrid = [
+    { glyph: '🧔🏽', name: 'Maruti-loyalist Haggler', diff: 'Hard', plays: '2.1k', fresh: true },
+    { glyph: '👴🏽', name: 'EV-skeptic Uncle', diff: 'Medium', plays: '1.4k' },
+    { glyph: '🤓', name: 'Spec-sheet Engineer', diff: 'Hard', plays: '980' },
+    { glyph: '😰', name: 'EMI-anxious First-timer', diff: 'Easy', plays: '3.3k' },
+    { glyph: '🦅', name: 'Exchange-value Hawk', diff: 'Medium', plays: '1.1k', fresh: true },
+    { glyph: '🤐', name: 'Silent Decider', diff: 'Hard', plays: '760' },
+  ];
+  personaTypes = ['Maruti-loyalist haggler', 'EV-skeptic', 'Spec-sheet engineer', 'Exchange hawk'];
+  diffs = ['Easy', 'Medium', 'Hard'];
+  toughPersonas = [
+    { key: 'mgr', glyph: '😤', name: 'The pressure-cooker manager', desc: 'Pushes targets hard, little patience', open: 'Month khatam hone wala hai aur tum abhi tak target se peeche ho. Kya kar rahe ho din bhar?',
+      choices: [{ text: 'Sir, main 4 hot leads pe kaam kar raha hoon — kal tak 2 close honi chahiye. Aaj ki plan dikhata hoon.', good: true }, { text: 'Sir customers hi nahi aa rahe, kya karoon main.', good: false }],
+      reply: 'Theek hai, plan dikhao. Numbers chahiye mujhe.', tip: 'You took ownership and offered a concrete plan instead of an excuse. Managing up works best when you bring a next step, not a problem.' },
+    { key: 'target', glyph: '📈', name: 'The moving-target', desc: 'Raises your quota mid-month', open: 'Target 10 se 13 kar raha hoon is mahine. Ho jayega na?',
+      choices: [{ text: 'Sir 13 stretch hai — par agar weekend ke leads mujhe milein to 11–12 realistic hai. Beech ka raasta nikaalein?', good: true }, { text: 'Theek hai sir, ho jayega.', good: false }],
+      reply: 'Haan weekend leads de deta hoon. 12 pe baat karte hain.', tip: 'You negotiated with data instead of silently absorbing an unfair jump. Naming what you need to hit a number is agency, not pushback.' },
+    { key: 'reject', glyph: '🌧️', name: 'The demotivating day', desc: 'Five walk-ins, zero bookings', open: 'Aaj paanch customer aaye, ek bhi nahi tika. Lag raha hai main kar hi nahi paunga.',
+      choices: [{ text: 'Ek din se kuch tay nahi hota. Kal ke do follow-ups pakke hain — ek win se mood badal jayega.', good: true }, { text: 'Shayad ye kaam mere bas ka nahi.', good: false }],
+      reply: 'Sahi soch. Follow-up pe focus karta hoon.', tip: 'Rejection is the job, not a verdict on you. Re-anchoring on the next concrete action is how strong closers reset a bad day.' },
+  ];
+
+  // ---- nav ----
+  go(s){ this.setState({ screen: s, askOpen: false }); document.querySelector('[style*="overflow-y:auto"]') && (document.querySelector('[style*="overflow-y:auto"]').scrollTop = 0); }
+  navHome = () => this.go('home');
+  navLearn = () => this.go('learnHub');
+  navCompete = () => this.go('compete');
+  navGrowth = () => this.go('growth');
+  navEarn = () => this.go('earn');
+  startModule = (id) => { this.setState({ activeModule: id, learnStep: 'lesson', pitchState: 'idle', roleBubbles: [], roleRound: 0, roleDone: false }); this.go('learn'); };
+  startToday = () => this.startModule('objection');
+
+  toggleLang = () => this.setState(s => ({ lang: s.lang === 'en' ? 'hi' : 'en' }));
+  openAsk = () => this.setState({ askOpen: true });
+  closeAsk = () => this.setState({ askOpen: false });
+  askChange = (e) => this.setState({ askText: e.target.value });
+  askSend = () => { const t = this.state.askText.trim(); if (!t) return; this.pushAsk(t, 'Good question. In your dealership’s approved voice: lead with empathy, reframe to value (EMI + exchange + safety), and never run down the competitor. Keep one concrete number ready.'); this.setState({ askText: '' }); };
+  pushAsk = (q, a) => this.setState(s => ({ askLog: [...s.askLog, { q: true, text: q }, { a: true, text: a }] }));
+  askPick = (item) => this.pushAsk(item.q, item.a);
+
+  // ---- learn flow ----
+  toPitch = () => this.setState({ learnStep: 'pitch', pitchState: 'idle' });
+  doRecord = () => {
+    this.setState({ pitchState: 'recording', dispScore: 0 });
+    setTimeout(() => { this.setState({ pitchState: 'result' }); this.animateScore(72); }, 2000);
+  };
+  animateScore = (target) => {
+    let n = 0; clearInterval(this._iv);
+    this._iv = setInterval(() => { n += 4; if (n >= target) { n = target; clearInterval(this._iv); } this.setState({ dispScore: n }); }, 28);
+  };
+  toRole = () => this.setState({ learnStep: 'roleplay', roleBubbles: [{ cust: true, text: this.roleScript[0].open }], roleRound: 0, roleDone: false, rolePending: false });
+  pickRole = (i) => {
+    const r = this.state.roleRound; const round = this.roleScript[r]; const choice = round.choices[i];
+    this.setState(s => ({ roleBubbles: [...s.roleBubbles, { me: true, text: choice.text }], rolePending: true }));
+    setTimeout(() => {
+      const isLast = r >= this.roleScript.length - 1;
+      const counter = choice.good ? round.counterGood : round.counterBad;
+      if (isLast && choice.good) { this.setState({ rolePending: false, roleDone: true }); return; }
+      const nextOpen = isLast ? counter : (this.roleScript[r + 1].open || counter);
+      this.setState(s => ({ roleBubbles: [...s.roleBubbles, { cust: true, text: counter || nextOpen }], roleRound: Math.min(r + 1, this.roleScript.length - 1), rolePending: false, roleDone: isLast }));
+    }, 1100);
+  };
+  finishLoop = () => this.setState({ learnStep: 'result' });
+  applyLoop = () => { this.setState({ bumpObjection: true }); this.go('growth'); };
+
+  // ---- sale ----
+  openSold = () => {
+    this.setState({ celebrate: true, clinch: null });
+    this.go('logsale');
+    this.setState(s => ({ salesNow: Math.min(s.salesNow + 1, 10) }));
+    setTimeout(() => this.setState({ celebrate: false }), 2600);
+  };
+  pickClinch = (key) => this.setState({ clinch: key, bumpObjection: this.state.bumpObjection || key === 'objection' });
+
+  // ---- persona builder ----
+  setPersona = (k, v) => this.setState(s => ({ persona: { ...s.persona, [k]: v } }));
+  submitPersona = () => this.setState({ personaSubmitted: true });
+  goBuild = () => { this.setState({ personaSubmitted: false }); this.go('personaBuild'); };
+  goPlay = () => this.go('personaPlay');
+  playPersona = () => this.navLearn();
+
+  // ---- tough situations (private) ----
+  navTough = () => { this.setState({ toughSel: null }); this.go('tough'); };
+  openTough = (p) => this.setState({ toughSel: p, toughBubbles: [{ them: true, text: p.open }], toughPending: false, toughDone: false });
+  backToughList = () => this.setState({ toughSel: null });
+  toughPick = (i) => {
+    const p = this.state.toughSel; const choice = p.choices[i];
+    this.setState(s => ({ toughBubbles: [...s.toughBubbles, { me: true, text: choice.text }], toughPending: true }));
+    setTimeout(() => this.setState(s => ({ toughBubbles: [...s.toughBubbles, { them: true, text: p.reply }], toughPending: false, toughDone: true })), 1100);
+  };
+
+  pill(active){ return active ? 'background:linear-gradient(135deg,#8B5CF6,#A78BFA);color:#fff;' : 'color:#A99FC4;'; }
+  navColor(active){ return active ? '#FF7FB0' : '#6B6388'; }
+
+  renderVals() {
+    const st = this.state; const loc = this.L[st.lang];
+    const sales = st.salesNow; const incBase = 38400 + (sales - 8) * 5200;
+    const incFmt = '₹' + incBase.toLocaleString('en-IN');
+    const incPctW = Math.round((sales / 10) * 100) + '%';
+    const grp = st.screen === 'logsale' ? '' : st.screen;
+    const competeGroup = ['compete', 'personaBuild', 'personaPlay'].includes(st.screen);
+    const learnGroup = ['learnHub', 'learn'].includes(st.screen);
+    const mod = this.modules.find(m => m.id === st.activeModule) || this.modules[1];
+    const dColor = (d) => d === 'Hard' ? '#FF4D8D' : d === 'Medium' ? '#FF9D42' : '#34D399';
+
+    const skills = [
+      { key: 'feature', name: 'Feature mastery', val: 81, prev: 79 },
+      { key: 'finance', name: 'Finance options', val: 72, prev: 68 },
+      { key: 'needs', name: 'Needs discovery', val: 64, prev: 60 },
+      { key: 'objection', name: 'Objection handling', val: st.bumpObjection ? 58 : 41, prev: 41 },
+      { key: 'testdrive', name: 'Test-drive pitch', val: 49, prev: 49 },
+    ];
+    const colorFor = (v) => v >= 75 ? 'linear-gradient(90deg,#2DD4A7,#34D399)' : v >= 55 ? 'linear-gradient(90deg,#8B5CF6,#A78BFA)' : 'linear-gradient(90deg,#FF4D8D,#FF9D42)';
+    const skillsView = skills.map(s => ({ name: s.name, val: s.val, w: s.val + '%', color: colorFor(s.val), up: s.val > s.prev, delta: s.val - s.prev }));
+
+    const round = this.roleScript[st.roleRound] || this.roleScript[0];
+    const currentChoices = round.choices.map((c, i) => ({ text: c.text, onClick: () => this.pickRole(i) }));
+    const clinchOptions = this.clinchData.map(c => ({ emoji: c.emoji, label: c.label, onClick: () => this.pickClinch(c.key) }));
+    const clinchLabel = (this.clinchData.find(c => c.key === st.clinch) || {}).label || '';
+
+    let confettiEls = null;
+    if (st.celebrate) {
+      const cols = ['#FF4D8D', '#FF9D42', '#34D399', '#8B5CF6', '#22D3EE', '#FFD84D'];
+      confettiEls = Array.from({ length: 70 }).map((_, i) => React.createElement('div', { key: i, style: {
+        position: 'absolute', top: '-14px', left: (Math.random() * 100) + '%',
+        width: (6 + Math.random() * 7) + 'px', height: (9 + Math.random() * 9) + 'px',
+        background: cols[i % cols.length], borderRadius: '2px', opacity: 0.95,
+        animation: `ccfall ${1.6 + Math.random() * 1.4}s cubic-bezier(.3,.7,.5,1) ${Math.random() * 0.5}s forwards`,
+        transform: `rotate(${Math.random() * 360}deg)` } }));
+    }
+
+    const peerBoard = this.peers.map(p => ({ ...p, rowStyle: p.me ? 'background:rgba(139,92,246,0.14);' : '' }));
+
+    return {
+      loc, isHome: st.screen === 'home', isLearn: st.screen === 'learn', isGrowth: st.screen === 'growth',
+      isEarn: st.screen === 'earn', isLog: st.screen === 'logsale', isCompete: st.screen === 'compete', isTough: st.screen === 'tough',
+      incFmt, incPctW, salesNow: sales, nbaReason: 'Last week you fixed your greeting. This week the app is routing every drill at objection handling — your lowest-converting moment.',
+      enPill: this.pill(st.lang === 'en'), hiPill: this.pill(st.lang === 'hi'),
+      cHome: this.navColor(grp === 'home'), cLearn: this.navColor(learnGroup), cCompete: this.navColor(competeGroup), cGrowth: this.navColor(grp === 'growth'), cEarn: this.navColor(grp === 'earn'),
+      toggleLang: this.toggleLang, openAsk: this.openAsk, closeAsk: this.closeAsk,
+      navHome: this.navHome, navLearn: this.navLearn, navCompete: this.navCompete, navGrowth: this.navGrowth, navEarn: this.navEarn,
+      startToday: this.startToday, openSold: this.openSold,
+      // learn
+      isLearnHub: st.screen === 'learnHub',
+      modulesView: this.modules.map(m => ({ title: m.title, skill: m.skill, color: m.color, colorBg: m.color + '22', dur: m.dur, w: m.progress + '%', badge: m.badge || '', hasBadge: !!m.badge, badgeStyle: m.badge === 'Today' ? 'color:#161028;background:linear-gradient(135deg,#FF4D8D,#FF9D42);' : 'color:#22D3EE;background:rgba(34,211,238,0.16);', onClick: () => this.startModule(m.id) })),
+      lessonTitle: mod.title, lessonStep: mod.step, lessonSkill: mod.skill, lessonSkillBg: mod.color + '22', lessonSkillColor: mod.color, pitchScenario: mod.scenario,
+      lessonPoints: mod.points, lLesson: st.learnStep === 'lesson', lPitch: st.learnStep === 'pitch', lRole: st.learnStep === 'roleplay', lResult: st.learnStep === 'result',
+      railLearn: 'linear-gradient(90deg,#8B5CF6,#A78BFA)', railPitch: (st.learnStep === 'pitch' || st.learnStep === 'roleplay' || st.learnStep === 'result') ? 'linear-gradient(90deg,#FF4D8D,#FF9D42)' : 'rgba(255,255,255,0.1)', railRole: (st.learnStep === 'roleplay' || st.learnStep === 'result') ? 'linear-gradient(90deg,#22D3EE,#2DD4A7)' : 'rgba(255,255,255,0.1)',
+      toPitch: this.toPitch, doRecord: this.doRecord, toRole: this.toRole, finishLoop: this.finishLoop, applyLoop: this.applyLoop,
+      pIdle: st.pitchState === 'idle', pRec: st.pitchState === 'recording', pResult: st.pitchState === 'result',
+      dispScore: st.dispScore, pStruct: 78, pClar: 70, pComp: 68,
+      roleBubbles: st.roleBubbles, rolePending: st.rolePending, roleDone: st.roleDone,
+      roleChoicesShown: !st.rolePending && !st.roleDone, currentChoices, roleScoreVal: 84,
+      // growth/earn
+      skillsView, peerBoard,
+      // sale
+      confettiEls, soldClinchAsk: !st.clinch, soldClinched: !!st.clinch, clinchOptions, clinchLabel, saleFeed: this.feed,
+      // ask
+      askOpen: st.askOpen, askLog: st.askLog, askEmpty: st.askLog.length === 0, askText: st.askText,
+      askChange: this.askChange, askSend: this.askSend,
+      askSuggestions: this.askSuggest.map(s => ({ text: s.q, onClick: () => this.askPick(s) })),
+      // compete
+      isBuild: st.screen === 'personaBuild', isPlay: st.screen === 'personaPlay',
+      season: this.season, navCompete: this.navCompete, navTough: this.navTough, goBuild: this.goBuild, goPlay: this.goPlay,
+      teamBoard: this.teamBoard.map(t => ({ ...t, pts: t.pts.toLocaleString('en-IN'), rowStyle: t.me ? 'background:rgba(139,92,246,0.14);' : '' })),
+      closerBoard: this.closerBoard.map(c => ({ ...c, pts: c.pts.toLocaleString('en-IN'), rowStyle: c.me ? 'background:rgba(139,92,246,0.14);' : '' })),
+      personaGrid: this.personaGrid.map(p => ({ ...p, diffColor: dColor(p.diff), diffBg: dColor(p.diff) + '26', onClick: this.playPersona })),
+      personaTypes: this.personaTypes.map(t => ({ label: t, sel: this.state.persona.type === t, style: this.pill(this.state.persona.type === t), onClick: () => this.setPersona('type', t) })),
+      diffChips: this.diffs.map(d => ({ label: d, sel: this.state.persona.diff === d, color: dColor(d), bg: this.state.persona.diff === d ? dColor(d) : 'transparent', txt: this.state.persona.diff === d ? '#161028' : '#A99FC4', border: dColor(d), onClick: () => this.setPersona('diff', d) })),
+      personaName: st.persona.name, personaLine: st.persona.line, personaType: st.persona.type, personaDiff: st.persona.diff,
+      personaNameChange: (e) => this.setPersona('name', e.target.value), personaLineChange: (e) => this.setPersona('line', e.target.value),
+      submitPersona: this.submitPersona, personaSubmitted: st.personaSubmitted, personaFormShown: !st.personaSubmitted, playPersona: this.playPersona,
+      // tough
+      isTough: st.screen === 'tough', toughList: !st.toughSel, toughSel: st.toughSel,
+      toughCards: this.toughPersonas.map(p => ({ ...p, onClick: () => this.openTough(p) })),
+      toughBubbles: st.toughBubbles, toughPending: st.toughPending, toughDone: st.toughDone,
+      toughChoicesShown: st.toughSel && !st.toughPending && !st.toughDone,
+      toughChoices: st.toughSel ? st.toughSel.choices.map((c, i) => ({ text: c.text, onClick: () => this.toughPick(i) })) : [],
+      toughTip: st.toughSel ? st.toughSel.tip : '', toughName: st.toughSel ? st.toughSel.name : '', toughGlyph: st.toughSel ? st.toughSel.glyph : '',
+      navTough2: this.navTough, backToughList: this.backToughList, openTough2: this.openTough,
+    };
+  }
+}
+</script>
+</body>
+</html>
