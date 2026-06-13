@@ -15,8 +15,74 @@ body{font-family:'Inter',system-ui,sans-serif;background:#E7EAF0;min-height:100v
 .shell{width:1280px;height:864px;border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(15,23,42,.22);background:#fff;display:flex;flex-direction:column;position:relative;}
 
 /* Toast */
-.toast{position:absolute;bottom:22px;right:24px;z-index:99;background:#0F1B2D;color:#fff;font-size:12.5px;font-weight:600;padding:11px 16px;border-radius:10px;box-shadow:0 10px 30px rgba(15,23,42,.35);display:flex;align-items:center;gap:8px;transition:opacity .2s;}
+.toast{position:fixed;bottom:22px;right:24px;z-index:9999;background:#0F1B2D;color:#fff;font-size:12.5px;font-weight:600;padding:11px 16px;border-radius:10px;box-shadow:0 10px 30px rgba(15,23,42,.35);display:flex;align-items:center;gap:8px;transition:opacity .2s;}
 .toast.hidden{display:none;}
+
+/* ── MOBILE ──────────────────────────────────────────────────────────────── */
+.m-shell{display:none;flex-direction:column;width:100%;height:100vh;height:100dvh;background:#F5F7FA;overflow:hidden;}
+.mh{height:56px;flex:none;background:#0F1B2D;display:flex;align-items:center;justify-content:space-between;padding:0 16px;}
+.mh-logo{display:flex;align-items:center;gap:8px;}
+.mh-badge{width:28px;height:28px;border-radius:7px;background:#2563EB;display:flex;align-items:center;justify-content:center;}
+.mh-name{font-size:15px;font-weight:800;color:#fff;letter-spacing:-.02em;}
+.mh-pill{font-size:9px;font-weight:800;color:#fff;background:#2563EB;padding:2px 5px;border-radius:4px;}
+.mh-zone{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.1);border-radius:8px;padding:5px 10px;cursor:pointer;}
+.mh-zone-text{font-size:12px;font-weight:700;color:#fff;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.mh-av{width:30px;height:30px;border-radius:50%;background:#2563EB;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;}
+.mc{flex:1;overflow-y:auto;padding:16px;-webkit-overflow-scrolling:touch;}
+.mn{height:60px;flex:none;background:#fff;border-top:1px solid #E6EAF0;display:flex;align-items:stretch;padding-bottom:env(safe-area-inset-bottom);}
+.mn-tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;padding:6px 0;}
+.mn-tab .mn-label{font-size:10px;font-weight:600;color:#94A3B8;}
+.mn-tab svg{color:#94A3B8;}
+.mn-tab.active .mn-label{color:#2563EB;}
+.mn-tab.active svg{color:#2563EB;}
+.m-kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.m-kpi-card{background:#fff;border:1px solid #E6EAF0;border-radius:11px;padding:13px;}
+.m-kpi-label{font-size:10.5px;color:#64748B;font-weight:600;}
+.m-kpi-val{font-size:21px;font-weight:800;color:#0F172A;letter-spacing:-.02em;line-height:1;margin-top:6px;}
+.m-kpi-delta{font-size:11px;font-weight:700;margin-top:4px;}
+.m-kpi-sub{font-size:10px;color:#94A3B8;margin-top:3px;line-height:1.3;}
+.m-sec{background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:15px;margin-bottom:12px;}
+.m-sec-title{font-size:14px;font-weight:700;color:#0F172A;margin-bottom:12px;}
+.m-page-title{font-size:18px;font-weight:800;color:#0F172A;letter-spacing:-.02em;margin-bottom:3px;}
+.m-page-sub{font-size:12px;color:#64748B;margin-bottom:14px;}
+.m-person{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid #F1F5F9;cursor:pointer;}
+.m-person:last-child{border-bottom:none;}
+.m-back{display:flex;align-items:center;gap:6px;color:#64748B;font-size:13px;font-weight:600;cursor:pointer;margin-bottom:14px;}
+.m-more-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.m-more-card{background:#fff;border:1px solid #E6EAF0;border-radius:12px;padding:16px;cursor:pointer;display:flex;flex-direction:column;gap:7px;active:border-color:#BFDBFE;}
+.m-sheet-overlay{position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:200;display:flex;align-items:flex-end;}
+.m-sheet{width:100%;background:#fff;border-radius:18px 18px 0 0;padding:20px 16px 40px;}
+.m-sheet-handle{width:36px;height:4px;border-radius:2px;background:#CBD5E1;margin:0 auto 16px;}
+.m-sheet-title{font-size:15px;font-weight:700;color:#0F172A;margin-bottom:10px;}
+.m-sheet-item{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid #F1F5F9;cursor:pointer;font-size:14px;font-weight:600;color:#0F172A;}
+.m-sheet-item:last-child{border-bottom:none;}
+.m-attn{background:#fff;border:1px solid #E6EAF0;border-radius:11px;padding:13px;margin-bottom:10px;cursor:pointer;}
+.m-bar-wrap{margin-bottom:10px;}
+.m-bar-label{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;}
+.m-bar-t{height:7px;border-radius:999px;background:#EEF2F7;overflow:hidden;}
+.m-bar-f{height:100%;border-radius:999px;}
+.m-chips{display:flex;gap:7px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.m-chips::-webkit-scrollbar{display:none;}
+.m-chip{font-size:11.5px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid #E2E8F0;cursor:pointer;background:#fff;color:#475569;white-space:nowrap;}
+.m-chip.active{background:#0F1B2D;color:#fff;border-color:#0F1B2D;}
+.m-info{background:#EFF6FF;border:1px solid #BFDBFE;border-radius:11px;padding:13px;margin-bottom:12px;display:flex;gap:10px;}
+.m-info-text{font-size:11.5px;color:#1E3A8A;line-height:1.45;}
+.m-toggle{width:38px;height:21px;border-radius:999px;padding:2.5px;display:flex;align-items:center;cursor:pointer;transition:background .2s;flex:none;}
+.m-toggle.on{background:#2563EB;justify-content:flex-end;}
+.m-toggle.off{background:#CBD5E1;justify-content:flex-start;}
+.m-toggle-thumb{width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(15,23,42,.25);}
+.m-freq-chips{display:flex;gap:8px;margin-top:10px;}
+.m-freq-chip{flex:1;text-align:center;font-size:12px;font-weight:600;padding:8px 0;border-radius:8px;border:1px solid #E2E8F0;cursor:pointer;}
+.m-freq-chip.active{background:#0F1B2D;color:#fff;border-color:#0F1B2D;}
+@media (max-width:767px){
+  body{padding:0;align-items:stretch;justify-content:flex-start;}
+  .shell{display:none!important;}
+  .m-shell{display:flex;}
+  .toast{bottom:76px;right:16px;left:16px;right:16px;}
+}
+@media (min-width:768px){
+  .m-shell{display:none!important;}
+}
 
 /* Browser chrome */
 .chrome{height:44px;flex:none;background:#EDEFF3;border-bottom:1px solid #DCE0E8;display:flex;align-items:center;gap:14px;padding:0 16px;}
@@ -150,13 +216,12 @@ body{font-family:'Inter',system-ui,sans-serif;background:#E7EAF0;min-height:100v
 </head>
 <body>
 
-<div class="shell" id="app">
-  <!-- Toast -->
-  <div class="toast hidden" id="toast">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-    <span id="toast-msg"></span>
-  </div>
+<div class="toast hidden" id="toast">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+  <span id="toast-msg"></span>
+</div>
 
+<div class="shell" id="app">
   <!-- Browser chrome -->
   <div class="chrome">
     <div class="chrome-dots">
@@ -218,6 +283,62 @@ body{font-family:'Inter',system-ui,sans-serif;background:#E7EAF0;min-height:100v
 
       <!-- Content -->
       <div class="content" id="content"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Mobile Shell ───────────────────────────────────────────────────────── -->
+<div class="m-shell" id="mapp">
+
+  <!-- Zone bottom sheet -->
+  <div class="m-sheet-overlay" id="m-zone-overlay" style="display:none;" onclick="mCloseSheet(event)">
+    <div class="m-sheet">
+      <div class="m-sheet-handle"></div>
+      <div class="m-sheet-title">Select zone</div>
+      <div id="m-zone-items"></div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <div class="mh">
+    <div class="mh-logo">
+      <div class="mh-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 5-5 4 4 8-8"/><path d="M17 7h4v4"/></svg>
+      </div>
+      <span class="mh-name">SalesMax</span>
+      <span class="mh-pill">PRO</span>
+    </div>
+    <div class="mh-zone" onclick="mOpenSheet()">
+      <span class="mh-zone-text" id="m-zone-label">Pune North Zone</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+    </div>
+    <div class="mh-av">RM</div>
+  </div>
+
+  <!-- Scrollable content -->
+  <div class="mc" id="m-content"></div>
+
+  <!-- Bottom nav -->
+  <div class="mn">
+    <div class="mn-tab active" id="mnt-overview" onclick="mGo('overview')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+      <span class="mn-label">Overview</span>
+    </div>
+    <div class="mn-tab" id="mnt-people" onclick="mGo('people')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1A4 4 0 0 1 16 11"/></svg>
+      <span class="mn-label">People</span>
+    </div>
+    <div class="mn-tab" id="mnt-skill" onclick="mGo('skill')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 5-5 4 4 8-8"/><path d="M17 7h4v4"/></svg>
+      <span class="mn-label">Skills</span>
+    </div>
+    <div class="mn-tab" id="mnt-market" onclick="mGo('market')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 2v10l8.7 5"/><path d="M12 12 4 7"/></svg>
+      <span class="mn-label">Signals</span>
+    </div>
+    <div class="mn-tab" id="mnt-more" onclick="mGo('more')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>
+      <span class="mn-label">More</span>
     </div>
   </div>
 </div>
@@ -1168,11 +1289,389 @@ function setDigestFreq(f) {
   renderContent();
 }
 
+// ─── MOBILE ──────────────────────────────────────────────────────────────────
+
+const ms = {
+  view: 'overview',
+  zone: 'Pune North Zone',
+  moreView: null,
+  peopleFilter: 'all',
+  personId: null,
+  digestFreq: 'Weekly',
+  digest: {attention:true,people:true,market:true,health:false,bench:true},
+};
+
+const mTabIds = ['overview','people','skill','market','more'];
+
+function mGo(v) {
+  ms.view = v; ms.personId = null; ms.moreView = null;
+  mTabIds.forEach(t => {
+    const el = document.getElementById('mnt-' + t);
+    if (el) el.classList.toggle('active', t === v);
+  });
+  mRender(); document.getElementById('m-content').scrollTop = 0;
+}
+
+function mGoMore(v) { ms.moreView = v; mRender(); document.getElementById('m-content').scrollTop = 0; }
+function mBack() { if (ms.personId) { ms.personId = null; } else if (ms.moreView) { ms.moreView = null; } mRender(); }
+
+function mOpenSheet() {
+  document.getElementById('m-zone-items').innerHTML = zones.map(z => `
+    <div class="m-sheet-item" onclick="mPickZone('${z}')">
+      ${z}
+      ${z === ms.zone ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>' : ''}
+    </div>`).join('');
+  document.getElementById('m-zone-overlay').style.display = 'flex';
+}
+function mCloseSheet(e) { if (e.target.id === 'm-zone-overlay') document.getElementById('m-zone-overlay').style.display = 'none'; }
+function mPickZone(z) {
+  ms.zone = z;
+  document.getElementById('m-zone-label').textContent = z;
+  document.getElementById('m-zone-overlay').style.display = 'none';
+  mRender(); showToast('Switched to ' + z + ' · sample data');
+}
+function mSetFilter(f) { ms.peopleFilter = f; ms.personId = null; mRender(); }
+function mOpenPerson(id) { ms.personId = id; mRender(); document.getElementById('m-content').scrollTop = 0; }
+
+function mRender() {
+  const el = document.getElementById('m-content');
+  if (ms.moreView) {
+    if (ms.moreView === 'roi') el.innerHTML = mROI();
+    else if (ms.moreView === 'adoption') el.innerHTML = mAdoption();
+    else if (ms.moreView === 'bench') el.innerHTML = mBench();
+    else if (ms.moreView === 'health') el.innerHTML = mHealth();
+    else if (ms.moreView === 'settings') el.innerHTML = mSettings();
+    return;
+  }
+  if (ms.view === 'overview') el.innerHTML = mOverview();
+  else if (ms.view === 'people') el.innerHTML = ms.personId ? mProfile() : mPeople();
+  else if (ms.view === 'skill') el.innerHTML = mSkill();
+  else if (ms.view === 'market') el.innerHTML = mMarket();
+  else if (ms.view === 'more') el.innerHTML = mMore();
+}
+
+function mOverview() {
+  const kpis = kpisByZone[ms.zone] || kpisByZone['Pune North Zone'];
+  return `
+    <div class="m-page-title">L&D Overview</div>
+    <div class="m-page-sub">Training impact across the zone.</div>
+    <div class="m-kpi-grid">
+      ${kpis.map(k=>`<div class="m-kpi-card"><div class="m-kpi-label">${k.label}</div><div class="m-kpi-val">${k.value}</div><div class="m-kpi-delta" style="color:${k.dc};">${k.delta}</div><div class="m-kpi-sub">${k.sub}</div></div>`).join('')}
+    </div>
+    <div style="margin-bottom:8px;font-size:13px;font-weight:700;color:#0F172A;">Needs your attention</div>
+    ${attention.map(a=>`
+      <div class="m-attn" onclick="mGo('${a.view}')">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:${a.tc};">● ${a.tag}</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2.2"><path d="m9 6 6 6-6 6"/></svg>
+        </div>
+        <div style="font-size:13px;color:#0F172A;font-weight:600;line-height:1.4;margin-top:7px;">${a.text}</div>
+        <div style="font-size:11px;color:#2563EB;font-weight:600;margin-top:6px;">${a.link} →</div>
+      </div>`).join('')}
+    <div class="m-sec" style="margin-top:4px;">
+      <div class="m-sec-title">Skill gains by module</div>
+      ${skillBars.map(s=>`
+        <div class="m-bar-wrap">
+          <div class="m-bar-label"><span style="color:#334155;font-weight:600;">${s.name}</span><span style="color:#16A34A;font-weight:700;">${s.delta}</span></div>
+          <div class="m-bar-t"><div class="m-bar-f" style="width:${s.w};background:#2563EB;"></div></div>
+        </div>`).join('')}
+    </div>
+    <div class="m-sec">
+      <div class="m-sec-title">Dealership rollup</div>
+      ${dealerships.map(d=>`
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid #F1F5F9;">
+          <div><div style="font-size:13px;font-weight:600;color:#0F172A;">${d.name}</div><div style="font-size:11px;color:#94A3B8;margin-top:2px;">Adoption ${d.adoption} · Skill ${d.skill}</div></div>
+          <div style="text-align:right;"><div style="font-size:13px;font-weight:600;color:#334155;">${d.conv}</div><div style="font-size:12px;font-weight:700;color:${d.tc};">${d.trend}</div></div>
+        </div>`).join('')}
+    </div>`;
+}
+
+function mPeople() {
+  const filters = [{id:'all',label:'All'},{id:'Top',label:'Top'},{id:'At risk',label:'At risk'},{id:'Inactive',label:'Inactive'}];
+  const filtered = ms.peopleFilter === 'all' ? roster : roster.filter(p => p.status === ms.peopleFilter);
+  return `
+    <div class="m-page-title">Consultants</div>
+    <div class="m-page-sub">Individual scores, activity and status.</div>
+    <div class="m-info"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" style="flex:none;margin-top:1px;"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg><div class="m-info-text">Performance & training metrics only. Private practice sessions are never shown here.</div></div>
+    <div class="m-chips">${filters.map(f=>`<div class="m-chip ${ms.peopleFilter===f.id?'active':''}" onclick="mSetFilter('${f.id}')">${f.label}</div>`).join('')}</div>
+    <div class="m-sec">
+      ${filtered.map(p=>{
+        const ab=p.status==='Top'?'#DCFCE7':p.status==='Inactive'?'#FEE2E2':'#EFF6FF';
+        const ac=p.status==='Top'?'#16A34A':p.status==='Inactive'?'#DC2626':'#2563EB';
+        return `<div class="m-person" onclick="mOpenPerson('${p.id}')">
+          <div class="av" style="width:38px;height:38px;background:${ab};font-size:12px;color:${ac};flex:none;">${p.ini}</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:14px;font-weight:700;color:#0F172A;">${p.name}</div>
+            <div style="font-size:11px;color:#64748B;margin-top:2px;">${p.dealer} · L${p.level} · Last: ${p.last}</div>
+          </div>
+          <div style="text-align:right;flex:none;">
+            <span style="font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;color:${p.sc};background:${p.sb};">${p.status}</span>
+            <div style="font-size:13px;font-weight:800;color:#0F172A;margin-top:4px;">${p.idx}</div>
+          </div>
+        </div>`}).join('')}
+    </div>`;
+}
+
+function mProfile() {
+  const p = roster.find(r => r.id === ms.personId);
+  if (!p) return mPeople();
+  const note = p.reinforced ? 'Daily drills are holding the post-training lift — no fade.' : 'Skill faded toward baseline. Drills stopped after the session — reinforce.';
+  return `
+    <div class="m-back" onclick="mBack()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>All consultants</div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <div class="av" style="width:48px;height:48px;background:#0F1B2D;font-size:16px;color:#fff;flex:none;">${p.ini}</div>
+      <div style="flex:1;">
+        <div style="font-size:18px;font-weight:800;color:#0F172A;">${p.name}</div>
+        <div style="font-size:12px;color:#64748B;margin-top:2px;">${p.dealer} · Level ${p.level} · ${p.joined}</div>
+      </div>
+      <span style="font-size:10.5px;font-weight:700;padding:4px 9px;border-radius:999px;color:${p.sc};background:${p.sb};">${p.status}</span>
+    </div>
+    <div class="m-kpi-grid">
+      ${[{l:'Skill index',v:String(p.idx)},{l:'Sales MTD',v:`${p.sales}/${p.target}`},{l:'Incentive',v:p.incentive},{l:'Streak',v:p.streak+'d'}].map(k=>`
+        <div class="m-kpi-card"><div class="m-kpi-label">${k.l}</div><div class="m-kpi-val" style="font-size:18px;">${k.v}</div></div>`).join('')}
+    </div>
+    <div class="m-sec">
+      <div class="m-sec-title">Skill profile</div>
+      ${p.skills.map(s=>{const c=s.val>=70?'#16A34A':s.val>=50?'#2563EB':'#D97706';return`
+        <div class="m-bar-wrap">
+          <div class="m-bar-label"><span style="color:#334155;font-weight:600;">${s.name}</span><span style="color:#0F172A;font-weight:700;">${s.val}</span></div>
+          <div class="m-bar-t"><div class="m-bar-f" style="width:${s.val}%;background:${c};"></div></div>
+        </div>`}).join('')}
+    </div>
+    <div class="m-sec">
+      <div class="m-sec-title">Coaching focus</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span style="font-size:11px;color:#64748B;font-weight:600;">Biggest gap</span>
+        <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;color:#D97706;background:#FEF3C7;">${p.gap}</span>
+      </div>
+      <div style="font-size:13px;color:#475569;line-height:1.5;">${p.note}</div>
+    </div>
+    <div class="m-sec">
+      <div class="m-sec-title">Post-training retention</div>
+      <div style="font-size:12.5px;color:#475569;line-height:1.5;">${note}</div>
+      <div style="font-size:10.5px;color:#94A3B8;margin-top:9px;">Last session: ${p.train} · ${p.modules} modules completed · ${p.streak}-day streak</div>
+    </div>`;
+}
+
+function mSkill() {
+  return `
+    <div class="m-page-title">Skill development</div>
+    <div class="m-page-sub">Zone strengths and coaching priorities.</div>
+    <div class="m-sec">
+      <div class="m-sec-title">Skill index by area</div>
+      ${skillTable.map(s=>`
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F1F5F9;">
+          <div><div style="font-size:13px;font-weight:600;color:#0F172A;">${s.name}</div><div style="font-size:11px;color:#94A3B8;margin-top:2px;">${s.practicing} practising · ${s.prof} proficient</div></div>
+          <div style="text-align:right;"><div style="font-size:17px;font-weight:800;color:#0F172A;">${s.avg}</div><div style="font-size:12px;font-weight:700;color:#16A34A;">${s.mom}</div></div>
+        </div>`).join('')}
+    </div>
+    <div class="m-sec">
+      <div class="m-sec-title">Top movers this month</div>
+      ${topMovers.map(m=>`
+        <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F1F5F9;">
+          <div class="av" style="width:32px;height:32px;background:#EFF6FF;font-size:11px;color:#2563EB;flex:none;">${m.ini}</div>
+          <div style="flex:1;"><div style="font-size:13px;font-weight:600;color:#0F172A;">${m.name} <span style="color:#94A3B8;font-weight:500;">· ${m.dealer}</span></div><div style="font-size:11px;color:#64748B;">${m.skill}</div></div>
+          <span style="font-size:14px;font-weight:700;color:#16A34A;">${m.gain}</span>
+        </div>`).join('')}
+    </div>
+    <div class="m-sec">
+      <div class="m-sec-title">Needs attention</div>
+      ${needsAttention.map(n=>`
+        <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F1F5F9;">
+          <div class="av" style="width:32px;height:32px;background:#FEF3C7;font-size:11px;color:#D97706;flex:none;">${n.ini}</div>
+          <div style="flex:1;"><div style="font-size:13px;font-weight:600;color:#0F172A;">${n.name} <span style="color:#94A3B8;">· ${n.dealer}</span></div><div style="font-size:11px;color:#64748B;">${n.note}</div></div>
+          <span style="font-size:12px;font-weight:600;color:#2563EB;cursor:pointer;" onclick="showToast('Nudge sent to ${n.name}')">Nudge</span>
+        </div>`).join('')}
+    </div>`;
+}
+
+function mMarket() {
+  return `
+    <div class="m-page-title">Market signals</div>
+    <div class="m-page-sub">What the floor is hearing this quarter.</div>
+    <div class="m-info"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" style="flex:none;margin-top:1px;"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg><div class="m-info-text">Derived from <b>anonymized, aggregated</b> practice content. Individual sessions are never shown.</div></div>
+    <div class="m-sec">
+      <div class="m-sec-title">Trending objections</div>
+      ${trendingObjections.map(o=>`
+        <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F1F5F9;">
+          <div style="flex:1;font-size:13px;font-weight:600;color:#0F172A;line-height:1.3;">${o.label}</div>
+          <div style="text-align:right;flex:none;"><div style="font-size:12px;color:#64748B;">${o.vol}</div><div style="font-size:12px;font-weight:700;color:${o.tc};">${o.trend}</div></div>
+        </div>`).join('')}
+    </div>
+    <div class="m-sec">
+      <div class="m-sec-title">Competitor share of voice</div>
+      ${competitorShare.map(c=>`
+        <div class="m-bar-wrap">
+          <div class="m-bar-label"><span style="color:#334155;font-weight:600;">${c.name}</span><span style="color:#0F172A;font-weight:700;">${c.pct}</span></div>
+          <div class="m-bar-t"><div class="m-bar-f" style="width:${c.w};background:#0F1B2D;"></div></div>
+        </div>`).join('')}
+    </div>
+    <div class="m-sec">
+      <div class="m-sec-title">Rising themes</div>
+      ${risingThemes.map(t=>`
+        <div style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #F1F5F9;align-items:flex-start;">
+          <span style="font-size:9.5px;font-weight:700;color:#2563EB;background:#EFF6FF;border:1px solid #BFDBFE;padding:4px 7px;border-radius:6px;white-space:nowrap;margin-top:1px;">${t.tag}</span>
+          <span style="font-size:12.5px;color:#334155;line-height:1.45;">${t.text}</span>
+        </div>`).join('')}
+    </div>`;
+}
+
+function mMore() {
+  const cards = [
+    {id:'roi',c:'#2563EB',icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h15a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/><path d="M3 7V6a2 2 0 0 1 2-2h11"/></svg>',label:'Incentives & ROI',sub:'Costs & bookings attributed'},
+    {id:'adoption',c:'#16A34A',icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/></svg>',label:'Adoption',sub:"Who's active, who's at risk"},
+    {id:'bench',c:'#7C3AED',icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M6 21v-8M12 21V5M18 21v-11"/></svg>',label:'Benchmarks',sub:'Your zone vs the country'},
+    {id:'health',c:'#D97706',icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 5 4-12 2 7h6"/></svg>',label:'Dealership health',sub:'Wellbeing signals by location'},
+    {id:'settings',c:'#64748B',icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7 19.4l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H3a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.6 7l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1Z"/></svg>',label:'Settings',sub:'Alerts & digest prefs'},
+  ];
+  return `
+    <div class="m-page-title">More</div>
+    <div class="m-page-sub">Additional views and settings.</div>
+    <div class="m-more-grid">
+      ${cards.map(c=>`
+        <div class="m-more-card" onclick="mGoMore('${c.id}')">
+          <span style="color:${c.c};">${c.icon}</span>
+          <div style="font-size:13px;font-weight:700;color:#0F172A;">${c.label}</div>
+          <div style="font-size:11px;color:#94A3B8;">${c.sub}</div>
+        </div>`).join('')}
+    </div>`;
+}
+
+function mROI() {
+  return `
+    <div class="m-back" onclick="mBack()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>More</div>
+    <div class="m-page-title">Incentives & ROI</div>
+    <div class="m-page-sub">What the program costs, and what it returns.</div>
+    <div class="m-kpi-grid">${roiKpis.map(k=>`<div class="m-kpi-card"><div class="m-kpi-label">${k.label}</div><div class="m-kpi-val" style="font-size:19px;">${k.value}</div><div class="m-kpi-sub">${k.sub}</div></div>`).join('')}</div>
+    <div class="m-sec">
+      <div class="m-sec-title">Incentive bracket distribution</div>
+      ${brackets.map(b=>`
+        <div class="m-bar-wrap">
+          <div class="m-bar-label"><span style="color:#334155;font-weight:600;">${b.name}</span><span style="color:#0F172A;font-weight:700;">${b.count} consultants</span></div>
+          <div class="m-bar-t" style="height:9px;"><div class="m-bar-f" style="width:${b.w};background:${b.color};"></div></div>
+        </div>`).join('')}
+    </div>
+    <div class="m-sec">
+      <div class="m-sec-title">Training investment vs bookings</div>
+      <div style="display:flex;align-items:flex-end;justify-content:space-around;height:130px;border-bottom:1px solid #EEF2F7;">
+        ${[{q:'Q1',g:62,b:50},{q:'Q2',g:84,b:78},{q:'Q3',g:104,b:116},{q:'Q4',g:120,b:138}].map(q=>`
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <div style="display:flex;align-items:flex-end;gap:3px;height:120px;">
+              <div style="width:16px;height:${q.g}px;background:#CBD5E1;border-radius:3px 3px 0 0;"></div>
+              <div style="width:16px;height:${q.b}px;background:#16A34A;border-radius:3px 3px 0 0;"></div>
+            </div>
+            <span style="font-size:10.5px;color:#94A3B8;font-weight:600;">${q.q}</span>
+          </div>`).join('')}
+      </div>
+      <div style="display:flex;gap:14px;margin-top:10px;">
+        <span style="display:flex;align-items:center;gap:6px;font-size:11px;color:#64748B;font-weight:600;"><span style="width:10px;height:10px;border-radius:2px;background:#CBD5E1;"></span>Training hrs</span>
+        <span style="display:flex;align-items:center;gap:6px;font-size:11px;color:#64748B;font-weight:600;"><span style="width:10px;height:10px;border-radius:2px;background:#16A34A;"></span>Bookings</span>
+      </div>
+    </div>`;
+}
+
+function mAdoption() {
+  return `
+    <div class="m-back" onclick="mBack()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>More</div>
+    <div class="m-page-title">Adoption</div>
+    <div class="m-page-sub">Who's pulling the app open between walk-ins.</div>
+    <div class="m-kpi-grid">${adoptKpis.map(k=>`<div class="m-kpi-card"><div class="m-kpi-label">${k.label}</div><div class="m-kpi-val" style="font-size:19px;">${k.value}</div><div class="m-kpi-sub">${k.sub}</div></div>`).join('')}</div>
+    <div class="m-sec">
+      <div class="m-sec-title">Activation funnel</div>
+      ${funnel.map(f=>`
+        <div class="m-bar-wrap">
+          <div class="m-bar-label"><span style="color:#334155;font-weight:600;">${f.label}</span><span style="color:#0F172A;font-weight:700;">${f.value}</span></div>
+          <div class="m-bar-t" style="height:9px;"><div class="m-bar-f" style="width:${f.w};background:#2563EB;"></div></div>
+        </div>`).join('')}
+    </div>
+    <div class="m-sec">
+      <div class="m-sec-title">At risk · re-engage</div>
+      ${atRisk.map(a=>`
+        <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F1F5F9;">
+          <div class="av" style="width:32px;height:32px;background:#FEE2E2;font-size:11px;color:#DC2626;flex:none;">${a.ini}</div>
+          <div><div style="font-size:13px;font-weight:600;color:#0F172A;">${a.name} <span style="color:#94A3B8;">· ${a.dealer}</span></div><div style="font-size:11px;color:#64748B;">${a.note}</div></div>
+        </div>`).join('')}
+    </div>
+    <div class="m-sec">
+      <div class="m-sec-title">New-joiner ramp</div>
+      ${rampKpis.map(r=>`<div style="margin-bottom:12px;"><div style="font-size:11px;color:#64748B;font-weight:600;">${r.label}</div><div style="font-size:20px;font-weight:800;color:#0F172A;margin-top:4px;">${r.value}</div><div style="font-size:10.5px;color:#94A3B8;">${r.sub}</div></div>`).join('')}
+    </div>`;
+}
+
+function mBench() {
+  const medals = {'1':'🥇','2':'🥈','3':'🥉'};
+  return `
+    <div class="m-back" onclick="mBack()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>More</div>
+    <div class="m-page-title">Zone benchmarks</div>
+    <div class="m-page-sub">How your zone stacks up nationally.</div>
+    <div class="m-info"><span style="font-size:20px;">🥈</span><div class="m-info-text"><b>Pune North ranks #2 of 12 zones.</b> Closing the Hinjewadi adoption gap could take the top spot.</div></div>
+    <div class="m-sec">
+      ${benchZones.map(b=>`
+        <div style="display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid #F1F5F9;${b.me?'background:#EFF6FF;margin:0 -15px;padding:11px 15px;':''}">
+          <div style="font-size:18px;min-width:28px;">${medals[b.rank]||b.rank}</div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:700;color:#0F172A;">${b.zone}${b.me?' <span style="font-size:10px;font-weight:700;color:#2563EB;background:#DBEAFE;padding:2px 5px;border-radius:4px;margin-left:4px;">You</span>':''}</div>
+            <div style="font-size:11px;color:#94A3B8;margin-top:2px;">Adoption ${b.adoption} · Skill ${b.idx} · ${b.conv}</div>
+          </div>
+          <span style="font-size:12px;font-weight:700;color:#16A34A;">${b.trend}</span>
+        </div>`).join('')}
+    </div>`;
+}
+
+function mHealth() {
+  return `
+    <div class="m-back" onclick="mBack()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>More</div>
+    <div class="m-page-title">Dealership health</div>
+    <div class="m-page-sub">Early signals on working conditions.</div>
+    <div class="m-info"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" style="flex:none;margin-top:1px;"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><div class="m-info-text"><b>Privacy by design.</b> Signals are de-identified and aggregate. No individual data is shown.</div></div>
+    <div class="m-kpi-grid">${healthKpis.map(h=>`<div class="m-kpi-card"><div class="m-kpi-label">${h.label}</div><div style="font-size:17px;font-weight:800;color:${h.color};margin-top:6px;line-height:1.1;">${h.value}</div><div class="m-kpi-sub">${h.sub}</div></div>`).join('')}</div>
+    <div class="m-sec">
+      <div class="m-sec-title">Condition signals by dealership</div>
+      ${healthRows.map(r=>`
+        <div style="padding:11px 0;border-bottom:1px solid #F1F5F9;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;">
+            <span style="font-size:13px;font-weight:700;color:#0F172A;">${r.name}</span>
+            <div style="display:flex;gap:5px;">
+              <span style="font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:999px;color:${r.pc};background:${r.pb};">${r.pressure}</span>
+              <span style="font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:999px;color:${r.mc};background:${r.mb};">${r.morale}</span>
+            </div>
+          </div>
+          <div style="font-size:11.5px;color:#64748B;">${r.action}</div>
+        </div>`).join('')}
+    </div>`;
+}
+
+function mSettings() {
+  const freqs = ['Daily','Weekly','Monthly'];
+  return `
+    <div class="m-back" onclick="mBack()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>More</div>
+    <div class="m-page-title">Alerts & digest</div>
+    <div class="m-page-sub">Get priorities in your inbox — no dashboard hunting.</div>
+    <div class="m-sec">
+      <div class="m-sec-title">What to include</div>
+      ${digestDefs.map(d=>`
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #F1F5F9;">
+          <div style="flex:1;"><div style="font-size:13px;font-weight:600;color:#0F172A;">${d.label}</div><div style="font-size:11px;color:#94A3B8;margin-top:2px;">${d.sub}</div></div>
+          <div class="m-toggle ${ms.digest[d.key]?'on':'off'}" onclick="mToggleDigest('${d.key}')"><div class="m-toggle-thumb"></div></div>
+        </div>`).join('')}
+    </div>
+    <div class="m-sec">
+      <div class="m-sec-title">Frequency</div>
+      <div class="m-freq-chips">${freqs.map(f=>`<div class="m-freq-chip ${ms.digestFreq===f?'active':''}" onclick="mSetFreq('${f}')">${f}</div>`).join('')}</div>
+      <div style="font-size:11.5px;color:#94A3B8;margin-top:10px;">${ms.digestFreq} digest · Mondays 8:00 IST</div>
+    </div>
+    <div onclick="showToast('Digest preferences saved · next send Monday 8:00')" style="background:#2563EB;color:#fff;text-align:center;padding:13px;border-radius:11px;font-size:14px;font-weight:700;cursor:pointer;margin-top:4px;">Save preferences</div>`;
+}
+
+function mToggleDigest(key) { ms.digest[key] = !ms.digest[key]; mRender(); }
+function mSetFreq(f) { ms.digestFreq = f; mRender(); }
+
 // ─── INIT ────────────────────────────────────────────────────────────────────
 
 renderNav();
 renderDropdowns();
 renderContent();
+mRender();
 </script>
 </body>
 </html>
